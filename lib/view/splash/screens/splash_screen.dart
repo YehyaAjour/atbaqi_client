@@ -1,5 +1,6 @@
 import 'package:atbaqi_client/core/utils/app_imports.dart';
 import 'package:atbaqi_client/view/auth/login_screen.dart';
+import 'package:atbaqi_client/view/main%20screen/Screens/main_screen.dart';
 import 'package:atbaqi_client/view/onboardingScreen/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -26,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
       } else {
         ProfileApis.profileApis.getProfile();
 
-        Get.off(HomeScreen());
+        Get.off(MainScreen());
       }
     });
     super.initState();

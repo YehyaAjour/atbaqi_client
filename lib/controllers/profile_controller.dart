@@ -20,7 +20,7 @@ class ProfileController extends GetxController {
         await ImagePicker().getImage(source: ImageSource.gallery);
 
     try {
-      File croppedFile = await ImageCropper.cropImage(
+      File croppedFile = await ImageCropper().cropImage(
           sourcePath: pickedFile.path,
           aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
           aspectRatioPresets: Platform.isAndroid

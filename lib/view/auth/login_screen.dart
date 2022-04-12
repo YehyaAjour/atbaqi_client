@@ -16,7 +16,11 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 0,backgroundColor: AppColors.primaryColor,),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: AppColors.primaryColor,
+        automaticallyImplyLeading: false,
+      ),
       body: Column(
         children: [
           Expanded(
@@ -24,7 +28,7 @@ class LoginScreen extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 90.h,
+                    height: 50.h,
                   ),
                   CustomSvgImage(
                     height: 181.h,
@@ -74,7 +78,6 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(
                     height: 9.h,
                   ),
-
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
                     child: Row(
@@ -82,7 +85,7 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         TextButton(
                             onPressed: () {
-                               Get.to(()=>ForgetPasswordScreen());
+                              Get.to(() => ForgetPasswordScreen());
                             },
                             child: CustomText(
                               'نسيت كلمة المرور؟',
@@ -106,7 +109,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       TextButton(
                           onPressed: () {
-                             Get.to(()=>RegisterScreen());
+                            Get.to(() => RegisterScreen());
                           },
                           child: CustomText(
                             'تسجيل حساب',
@@ -117,7 +120,6 @@ class LoginScreen extends StatelessWidget {
                           )),
                     ],
                   ),
-
                 ],
               ),
             ),
@@ -128,38 +130,26 @@ class LoginScreen extends StatelessWidget {
               height: 48.h,
               width: 126.w,
               child: MaterialButton(
-                onPressed: () {
-                  if (formStateLogin.currentState.validate()) {
-                    formStateLogin.currentState.save();
-                    AuthApis.authApis.login(
-                        authController.phoneNumber, authController.password);
-                  }
-                },
-                color: AppColors.primaryColor,
-                shape: const RoundedRectangleBorder(
-                  borderRadius:
-                  BorderRadius.only(topRight: Radius.circular(20)),
-                ),
-                child: Row(
-                  children:const [
-                    Icon(Icons.arrow_back_outlined,color: Colors.white,size: 30,),
-                    Spacer(),
-                    Text(
-                      'دخول',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
+                  onPressed: () {
+                    if (formStateLogin.currentState.validate()) {
+                      formStateLogin.currentState.save();
+                      AuthApis.authApis.login(
+                          authController.phoneNumber, authController.password);
+                    }
+                  },
+                  color: AppColors.primaryColor,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.only(topRight: Radius.circular(20)),
+                  ),
+                  child: Center(
+                    child: CustomText("دخول",
+                        fontSize: 20.sp, color: AppColors.whiteColor),
+                  )),
             ),
           ),
         ],
       ),
-
-
     );
   }
 }

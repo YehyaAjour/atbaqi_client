@@ -1,5 +1,3 @@
-
-
 import 'package:atbaqi_client/core/value/colors.dart';
 import 'package:atbaqi_client/core/widgets/custom_image.dart';
 
@@ -34,7 +32,7 @@ class UserProfileScreen extends StatelessWidget {
                           height: 20.h,
                         ),
                         Padding(
-                          padding:  EdgeInsets.symmetric(horizontal: 15.0.w),
+                          padding: EdgeInsets.symmetric(horizontal: 15.0.w),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -45,7 +43,13 @@ class UserProfileScreen extends StatelessWidget {
                                   color: AppColors.whiteColor,
                                 ),
                               ),
-                              Center(child: CustomText('الحساب الشخصي',fontSize: 20.sp,fontFamily: 'din',color: Colors.white,)),
+                              Center(
+                                  child: CustomText(
+                                'الحساب الشخصي',
+                                fontSize: 20.sp,
+                                fontFamily: 'din',
+                                color: Colors.white,
+                              )),
                               Container(),
                             ],
                           ),
@@ -54,10 +58,11 @@ class UserProfileScreen extends StatelessWidget {
                           height: 30.h,
                         ),
                         Padding(
-                          padding:  EdgeInsets.symmetric(horizontal: 30.0.w),
+                          padding: EdgeInsets.symmetric(horizontal: 30.0.w),
                           child: Row(
                             children: [
-                              CustomSvgImage(imageName: 'chat',width: 29.w,height: 29.h),
+                              CustomSvgImage(
+                                  imageName: 'chat', width: 29.w, height: 29.h),
                             ],
                           ),
                         ),
@@ -76,9 +81,14 @@ class UserProfileScreen extends StatelessWidget {
                             GestureDetector(
                               // onTap: () => Get.to(() => EditProfileScreen()),
                               child: CachedNetworkImageShare(
-                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyIav9OvgrN8aFLAu3U8zFyXvlrRF2FRFAvQ&usqp=CAU',80,80,0
+                                  baseImageUrl +
+                                      profileController.getProfileData.value
+                                          .profile[0].image,
+                                  80,
+                                  80,
+                                  0
                                   // "$baseImageUrl" + "${value.profile[0].image}" ?? "", 80, 80, 0
-                              ),
+                                  ),
                             ),
                             Positioned(
                               right: -10,
@@ -126,8 +136,6 @@ class UserProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-
-
             Expanded(
               child: Container(
                 width: Get.width,
@@ -151,13 +159,12 @@ class UserProfileScreen extends StatelessWidget {
                     SizedBox(
                       height: 20.h,
                     ),
-                    ProfileItem(
-                      onTap: () {
-                        // Get.to(() => ClientCommentScreen());
-                      },
-                      title: "إدارة الحساب/العنوان ",
-                    ),
-
+                    // ProfileItem(
+                    //   onTap: () {
+                    //     // Get.to(() => ClientCommentScreen());
+                    //   },
+                    //   title: "إدارة الحساب/العنوان ",
+                    // ),
                   ],
                 ),
               ),

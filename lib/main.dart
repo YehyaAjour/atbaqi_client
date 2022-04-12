@@ -1,4 +1,5 @@
-
+import 'package:atbaqi_client/controllers/app_controller.dart';
+import 'package:atbaqi_client/core/services/firebase_notification.dart';
 import 'package:atbaqi_client/view/splash/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
@@ -13,7 +14,7 @@ import 'core/value/colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
 
   await SPHelper.spHelper.initSharedPrefrences();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -34,6 +35,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
+    NotificationHelper().initialNotification();
     super.initState();
   }
 
@@ -47,14 +49,17 @@ class _MyAppState extends State<MyApp> {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       builder: () {
-         Get.put(AuthController());
-         Get.put(ProfileController());
-         Get.put(OTPController());
-
-
+        Get.put(AuthController());
+        Get.put(ProfileController());
+        Get.put(OTPController());
+        Get.put(AppController());
 
         return GetMaterialApp(
-          theme: ThemeData(scaffoldBackgroundColor: AppColors.whiteColor),
+          theme: ThemeData(
+              primaryColor: AppColors.primaryColor,
+              scaffoldBackgroundColor: AppColors.whiteColor,
+              // ignore: deprecated_member_use
+              accentColor: AppColors.primaryColor),
           defaultTransition: Transition.fadeIn,
           transitionDuration: const Duration(milliseconds: 300),
           debugShowCheckedModeBanner: false,

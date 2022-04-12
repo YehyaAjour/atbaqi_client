@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "67700317027",
+    "project_id": "atbaqi-d96b8",
+    "storage_bucket": "atbaqi-d96b8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67700317027:android:2b60b4fb085cd17a2c1156",
+        "android_client_info": {
+          "package_name": "com.example.atbaqi_client"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "67700317027-giksjhp00ij34njb26um847mj1nnfh5r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoqV0HT5fVpF0piotnZ7Pt-rvNkFg1HCo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "67700317027-giksjhp00ij34njb26um847mj1nnfh5r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

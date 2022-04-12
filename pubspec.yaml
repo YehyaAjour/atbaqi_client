@@ -57,6 +57,7 @@ dependencies:
   firebase_storage:
   firebase_messaging:
   shimmer:
+  flutter_local_notifications: ^9.4.0
 
 dev_dependencies:
   flutter_test:

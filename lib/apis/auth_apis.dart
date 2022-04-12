@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:atbaqi_client/apis/profile_apis.dart';
+import 'package:atbaqi_client/core/services/firebase_notification.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' as myGet;
 import 'package:get/get_core/src/get_main.dart';
@@ -13,7 +14,6 @@ import '../models/forget_password_model.dart';
 import '../view/auth/login_screen.dart';
 import '../view/homescreenlayout/screens/home_screen.dart';
 
-
 class AuthApis {
   AuthApis._();
 
@@ -22,7 +22,6 @@ class AuthApis {
 
   AuthController authController = myGet.Get.find();
   // ProfileController profileController = myGet.Get.find();
-
 
   initDio() {
     if (dio == null) {
@@ -47,7 +46,7 @@ class AuthApis {
         await SPHelper.spHelper.setToken(response.data['user']['api_token']);
 
         ProgressDialogUtils.hide();
-         ProfileApis.profileApis.getProfile();
+        ProfileApis.profileApis.getProfile();
         // HomeApis.homeApis.getAllMeals();
         // HomeApis.homeApis.getHomeMeals();
         print(response.data['user']['api_token']);
@@ -59,16 +58,17 @@ class AuthApis {
       }
     } catch (err) {
       ProgressDialogUtils.hide();
+      print(err);
       Helper.getSheetError(err.toString());
     }
   }
 
   register(
-      String phone, email, name,File image, passwordR, confirmPassword) async {
+      String phone, email, name, File image, passwordR, confirmPassword) async {
     try {
       initDio();
       ProgressDialogUtils.show();
-
+      String fcm = NotificationHelper().getToken();
       FormData data = FormData.fromMap({
         'phone': phone,
         "email": email,
@@ -76,9 +76,14 @@ class AuthApis {
         "image": await MultipartFile.fromFile(image.path, filename: image.path),
         "password": passwordR,
         'password_confirmation': confirmPassword,
-
+        "fcm": fcm,
+        "device": "Test",
       });
-      Response response = await dio.post(baseUrl + registerUrl, data: data);
+      Response response = await dio.post(
+        baseUrl + registerUrl,
+        options: Options(headers: {"Accept": "application/json"}),
+        data: data,
+      );
       if (response.statusCode == 200) {
         ProgressDialogUtils.hide();
         myGet.Get.off(() => LoginScreen());
@@ -89,6 +94,8 @@ class AuthApis {
       }
     } catch (err) {
       ProgressDialogUtils.hide();
+      print(err);
+
       Helper.getSheetError(err.toString());
     }
   }
@@ -130,7 +137,8 @@ class AuthApis {
       FormData data = FormData.fromMap({
         'email': email,
       });
-      Response response = await dio.post(baseUrl + forgetpasswordUrl, data: data);
+      Response response =
+          await dio.post(baseUrl + forgetpasswordUrl, data: data);
       if (response.data["status"]) {
         authController.getForgetPasswordData.value =
             ForgetPasswordModel.fromJson(response.data);
@@ -147,8 +155,10 @@ class AuthApis {
       Helper.getSheetError(err.toString());
     }
   }
+
   //
-  reAssignPassword(String code,String password,String password_confirmation) async {
+  reAssignPassword(
+      String code, String password, String password_confirmation) async {
     try {
       initDio();
       ProgressDialogUtils.show();
@@ -158,7 +168,8 @@ class AuthApis {
         'password': password,
         'password_confirmation': password_confirmation,
       });
-      Response response = await dio.post(baseUrl + resetPasswordUrl, data: data);
+      Response response =
+          await dio.post(baseUrl + resetPasswordUrl, data: data);
       if (response.data["status"]) {
         ProgressDialogUtils.hide();
         myGet.Get.offAll(() => LoginScreen());
@@ -174,5 +185,4 @@ class AuthApis {
       Helper.getSheetError(err.toString());
     }
   }
-
 }

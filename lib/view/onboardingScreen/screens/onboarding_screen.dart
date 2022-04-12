@@ -12,7 +12,7 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  int currentIndex = 0 ;
+  int currentIndex = 0;
   PageController _pageController;
   @override
   void initState() {
@@ -20,12 +20,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     _pageController = PageController(initialPage: 0);
     super.initState();
   }
+
   @override
   void dispose() {
     // TODO: implement dispose
     _pageController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,11 +37,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: PageView.builder(
               controller: _pageController,
               itemCount: content.length,
-             onPageChanged: (value) {
-             setState(() {
-               currentIndex = value;
-             });
-             },
+              onPageChanged: (value) {
+                setState(() {
+                  currentIndex = value;
+                });
+              },
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(40.0),
@@ -49,16 +51,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         height: 20,
                       ),
                       CustomSvgImage(
-                        imageName:  content[index].image,
+                        imageName: content[index].image,
                         width: 238.w,
                         height: 345.93.h,
                       ),
-
                       SizedBox(
                         height: 30,
                       ),
-                      CustomText(content[index].title,textAlign: TextAlign.center,fontSize: 20,),
-
+                      CustomText(
+                        content[index].title,
+                        textAlign: TextAlign.center,
+                        fontSize: 20,
+                      ),
                     ],
                   ),
                 );
@@ -69,9 +73,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
               content.length,
-              (index) => buildSmallDots(index,),
+              (index) => buildSmallDots(
+                index,
+              ),
             ),
-
           ),
           SizedBox(
             height: 40,
@@ -83,13 +88,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: MaterialButton(
               elevation: 2,
               onPressed: () {
-                if(currentIndex==content.length - 1 ){
-                Get.to(LoginScreen());
-                }else{
-                  _pageController.nextPage(duration: Duration(milliseconds: 100), curve: Curves.easeIn);
+                if (currentIndex == content.length - 1) {
+                  Get.to(LoginScreen());
+                } else {
+                  _pageController.nextPage(
+                      duration: Duration(milliseconds: 100),
+                      curve: Curves.easeIn);
                 }
               },
-              child: CustomText(currentIndex == content.length-1?'ابدأ':'التالي',color: Colors.white,fontSize: 20,),
+              child: CustomText(
+                currentIndex == content.length - 1 ? 'ابدأ' : 'التالي',
+                color: Colors.white,
+                fontSize: 20,
+              ),
               textColor: Colors.white,
               color: AppColors.primaryColor,
               shape: RoundedRectangleBorder(
@@ -100,23 +111,30 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           Container(
               padding: EdgeInsets.only(bottom: 40),
               child: TextButton(
-                  onPressed: () {Get.to(LoginScreen());},
-                  child: CustomText( 'تخطي',color: AppColors.primaryColor,fontSize: 20,)
-                 ))
+                  onPressed: () {
+                    Get.to(LoginScreen());
+                  },
+                  child: CustomText(
+                    'تخطي',
+                    color: AppColors.primaryColor,
+                    fontSize: 20,
+                  )))
         ],
       ),
     );
   }
 
-  Container buildSmallDots(int index,) {
+  Container buildSmallDots(
+    int index,
+  ) {
     return Container(
       decoration: BoxDecoration(
-          color: currentIndex==index?AppColors.primaryColor:Colors.grey[200],
+          color:
+              currentIndex == index ? AppColors.primaryColor : Colors.grey[200],
           borderRadius: BorderRadius.circular(20.r)),
-              width: currentIndex==index ? 30.w : 20.w,
-              height: 7.h,
-              margin: EdgeInsets.symmetric(horizontal: 1.w),
-
-            );
+      width: currentIndex == index ? 30.w : 20.w,
+      height: 7.h,
+      margin: EdgeInsets.symmetric(horizontal: 1.w),
+    );
   }
 }
