@@ -1,3 +1,4 @@
+import 'package:atbaqi_client/apis/home_apis.dart';
 import 'package:atbaqi_client/core/utils/animate_do.dart';
 import 'package:atbaqi_client/core/utils/app_imports.dart';
 import 'package:atbaqi_client/view/auth/login_screen.dart';
@@ -27,6 +28,8 @@ class _SplashScreenState extends State<SplashScreen> {
         Get.offAll(() => OnboardingScreen());
       } else {
         ProfileApis.profileApis.getProfile();
+        HomeApis.homeApis.getAllCategories();
+        HomeApis.homeApis.getHome();
 
         Get.off(MainScreen());
       }

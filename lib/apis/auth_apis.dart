@@ -1,6 +1,8 @@
 import 'dart:io';
+import 'package:atbaqi_client/apis/home_apis.dart';
 import 'package:atbaqi_client/apis/profile_apis.dart';
 import 'package:atbaqi_client/core/services/firebase_notification.dart';
+import 'package:atbaqi_client/view/main%20screen/Screens/main_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' as myGet;
 import 'package:get/get_core/src/get_main.dart';
@@ -50,7 +52,11 @@ class AuthApis {
         // HomeApis.homeApis.getAllMeals();
         // HomeApis.homeApis.getHomeMeals();
         print(response.data['user']['api_token']);
-        myGet.Get.offAll(() => HomeScreen());
+        HomeApis.homeApis.getAllCategories();
+        HomeApis.homeApis.getHome();
+        ProfileApis.profileApis.getProfile();
+        HomeApis.homeApis.getHome();
+        myGet.Get.offAll(() => MainScreen());
         Helper.getSheetSucsses(response.data['msg']);
       } else {
         ProgressDialogUtils.hide();
@@ -59,7 +65,6 @@ class AuthApis {
     } catch (err) {
       ProgressDialogUtils.hide();
       print(err);
-      Helper.getSheetError(err.toString());
     }
   }
 

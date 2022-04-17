@@ -1,4 +1,5 @@
 import 'package:atbaqi_client/controllers/app_controller.dart';
+import 'package:atbaqi_client/controllers/home_controller.dart';
 import 'package:atbaqi_client/core/services/firebase_notification.dart';
 import 'package:atbaqi_client/view/splash/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -53,7 +54,7 @@ class _MyAppState extends State<MyApp> {
         Get.put(ProfileController());
         Get.put(OTPController());
         Get.put(AppController());
-
+        Get.put(HomeController());
         return GetMaterialApp(
           theme: ThemeData(
               primaryColor: AppColors.primaryColor,

@@ -1,5 +1,6 @@
 import 'package:atbaqi_client/core/value/colors.dart';
 import 'package:atbaqi_client/core/widgets/custom_image.dart';
+import 'package:atbaqi_client/view/update%20profile/screens/update_profile_screen.dart';
 
 import '../../../controllers/profile_controller.dart';
 import '../../../core/utils/app_imports.dart';
@@ -79,7 +80,7 @@ class UserProfileScreen extends StatelessWidget {
                           clipBehavior: Clip.none,
                           children: [
                             GestureDetector(
-                              // onTap: () => Get.to(() => EditProfileScreen()),
+                              onTap: () => Get.to(() => UpdateProfileScreen()),
                               child: CachedNetworkImageShare(
                                   baseImageUrl +
                                       profileController.getProfileData.value

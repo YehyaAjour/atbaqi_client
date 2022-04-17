@@ -89,7 +89,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               elevation: 2,
               onPressed: () {
                 if (currentIndex == content.length - 1) {
-                  Get.to(LoginScreen());
+                  Get.to(() => LoginScreen());
                 } else {
                   _pageController.nextPage(
                       duration: Duration(milliseconds: 100),
@@ -112,7 +112,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               padding: EdgeInsets.only(bottom: 40),
               child: TextButton(
                   onPressed: () {
-                    Get.to(LoginScreen());
+                    Get.to(() => LoginScreen());
                   },
                   child: CustomText(
                     'تخطي',
