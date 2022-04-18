@@ -1,5 +1,8 @@
+import 'package:atbaqi_client/apis/home_apis.dart';
+import 'package:atbaqi_client/core/utils/animate_do.dart';
 import 'package:atbaqi_client/core/utils/app_imports.dart';
 import 'package:atbaqi_client/view/auth/login_screen.dart';
+import 'package:atbaqi_client/view/main%20screen/Screens/main_screen.dart';
 import 'package:atbaqi_client/view/onboardingScreen/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -25,8 +28,10 @@ class _SplashScreenState extends State<SplashScreen> {
         Get.offAll(() => OnboardingScreen());
       } else {
         ProfileApis.profileApis.getProfile();
+        HomeApis.homeApis.getAllCategories();
+        HomeApis.homeApis.getHome();
 
-        Get.off(HomeScreen());
+        Get.off(MainScreen());
       }
     });
     super.initState();
@@ -36,8 +41,32 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     // SPHelper.spHelper.setToken("");
     return Scaffold(
-      body: CustomPngImage(
-          imageName: 'splash', height: Get.height, width: Get.width),
+      body: Stack(
+        children: [
+          CustomPngImage(
+              imageName: 'splash', height: Get.height, width: Get.width),
+          ZoomIn(
+            duration: Duration(seconds: 2),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomPngImage(
+                    imageName: "logo",
+                    height: 190.h,
+                    width: 160.w,
+                    color: AppColors.whiteColor,
+                  ),
+                  CustomText(
+                    "أطباقي للأسر المنتجة",
+                    color: AppColors.whiteColor,
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

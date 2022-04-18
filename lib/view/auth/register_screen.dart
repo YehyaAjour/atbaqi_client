@@ -116,28 +116,28 @@ class RegisterScreen extends StatelessWidget {
                               },
                               child: controller.profilePicture == null
                                   ? Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: AppColors.borderColor),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                width: 97,
-                                height: 62,
-                                child: Center(child: Icon(Icons.image)),
-                              )
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: AppColors.borderColor),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      width: 97,
+                                      height: 62,
+                                      child: Center(child: Icon(Icons.image)),
+                                    )
                                   : Container(
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: AppColors.borderColor),
-                                    borderRadius:
-                                    BorderRadius.circular(8),
-                                    image: DecorationImage(
-                                        image: FileImage(
-                                          controller.profilePicture,
-                                        ))),
-                                width: 97,
-                                height: 62,
-                              ),
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: AppColors.borderColor),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          image: DecorationImage(
+                                              image: FileImage(
+                                            controller.profilePicture,
+                                          ))),
+                                      width: 97,
+                                      height: 62,
+                                    ),
                             ),
                             const SizedBox(
                               height: 15,
@@ -146,7 +146,7 @@ class RegisterScreen extends StatelessWidget {
                               topTitle: "كلمة المرور",
                               onSaved: authController.setPasswordR,
                               validator: authController.validationPasswordR,
-
+                              isPassword: true,
                               // textInputType: TextInputType.visiblePassword,
                             ),
                             const SizedBox(
@@ -155,6 +155,7 @@ class RegisterScreen extends StatelessWidget {
                             CustomTextFormField(
                               topTitle: "تأكيد كلمة المرور",
                               onSaved: authController.setConfirmPassword,
+                              isPassword: true,
                               validator:
                                   authController.validationConfirmPassword,
                               // textInputType: TextInputType.visiblePassword,

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:atbaqi_client/core/utils/progress_dialog_utils.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' as myGet;
 
@@ -46,6 +47,46 @@ class ProfileApis {
       } else {}
     } catch (err) {
       print("getProfile  $err");
+    }
+  }
+  updateProfile(
+    String phone,
+    String name,
+    //  File image
+  ) async {
+    try {
+      initDio();
+      String token = SPHelper.spHelper.getToken();
+
+      ProgressDialogUtils.show();
+
+      FormData data = FormData.fromMap({
+        'phone': phone,
+        'name': name,
+        // "image": await MultipartFile.fromFile(image.path, filename: image.path)
+      });
+      Response response = await dio.post(
+        baseUrl + updateProfileUrl,
+        data: data,
+        options: Options(
+          headers: {
+            'auth-token': token,
+          },
+        ),
+      );
+      if (response.data["status"]) {
+        ProgressDialogUtils.hide();
+        ProfileApis.profileApis.getProfile();
+        myGet.Get.back();
+        // ProfileApis.profileApis.
+        Helper.getSheetSucsses(response.data['msg']);
+      } else {
+        ProgressDialogUtils.hide();
+        Helper.getSheetError(response.data['msg']);
+      }
+    } catch (err) {
+      ProgressDialogUtils.hide();
+      Helper.getSheetError(err.toString());
     }
   }
 }

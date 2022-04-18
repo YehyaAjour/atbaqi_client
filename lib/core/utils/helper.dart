@@ -1,4 +1,3 @@
-
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../value/colors.dart';
@@ -73,16 +72,16 @@ class Helper {
 
   static loading() {
     return Center(
-      child: Container(
-        decoration: BoxDecoration(shape: BoxShape.circle),
-        child: Image.asset(
-          'assets/images/loading1.gif',
-          height: 250.h,
-          width: 250.w,
-          fit: BoxFit.fill,
+        child: Column(
+      children: [
+        SizedBox(
+          height: 10.h,
         ),
-      ),
-    );
+        CircularProgressIndicator(
+          color: AppColors.primaryColor,
+        ),
+      ],
+    ));
   }
 
   static var appRaduis = BorderRadius.circular(8.r);
