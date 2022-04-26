@@ -7,11 +7,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'controllers/auth_controller.dart';
+import 'controllers/contact_us_controller.dart';
+import 'controllers/favourite_controller.dart';
 import 'controllers/otp_controller.dart';
+import 'controllers/privacy_policy_controller.dart';
 import 'controllers/profile_controller.dart';
 import 'core/services/sp_helper.dart';
 import 'core/utils/app_imports.dart';
-import 'core/value/colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,6 +57,9 @@ class _MyAppState extends State<MyApp> {
         Get.put(OTPController());
         Get.put(AppController());
         Get.put(HomeController());
+        Get.put(PrivacyPolicyController());
+        Get.put(ContactUsController());
+        Get.put(FavouriteController());
         return GetMaterialApp(
           theme: ThemeData(
               primaryColor: AppColors.primaryColor,

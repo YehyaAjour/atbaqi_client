@@ -1,8 +1,7 @@
 
 import '../utils/app_imports.dart';
 import '../utils/helper.dart';
-import '../value/colors.dart';
-import 'custom_text.dart';
+
 
 class CustomTextFormField extends StatelessWidget {
   final String topTitle;
@@ -11,6 +10,7 @@ class CustomTextFormField extends StatelessWidget {
   final Function validator;
   final TextInputType textInputType;
   final bool isPassword;
+  final int maxLines;
   CustomTextFormField({
     this.topTitle,
     this.hint,
@@ -18,6 +18,7 @@ class CustomTextFormField extends StatelessWidget {
     this.validator,
     this.textInputType,
     this.isPassword = false,
+    this.maxLines,
   });
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class CustomTextFormField extends StatelessWidget {
           onSaved: (value) => onSaved(value),
           validator: (newValue) => validator(newValue),
           obscureText: isPassword,
-          maxLines: 1,
+          maxLines: maxLines??1,
           minLines: 1,
           keyboardType: textInputType ?? TextInputType.text,
           initialValue: hint ?? "",

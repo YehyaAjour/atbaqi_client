@@ -7,6 +7,7 @@ import 'package:atbaqi_client/view/onboardingScreen/screens/onboarding_screen.da
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../../apis/favourite_apis.dart';
 import '../../../apis/profile_apis.dart';
 import '../../../core/services/sp_helper.dart';
 import '../../../core/widgets/custom_image.dart';
@@ -30,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
         ProfileApis.profileApis.getProfile();
         HomeApis.homeApis.getAllCategories();
         HomeApis.homeApis.getHome();
-
+        FavouriteApis.favouriteApis.getAllFavorites();
         Get.off(MainScreen());
       }
     });

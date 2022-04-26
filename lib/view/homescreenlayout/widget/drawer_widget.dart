@@ -1,10 +1,13 @@
 import '../../../apis/auth_apis.dart';
+import '../../../apis/privacy_policy_apis.dart';
 import '../../../controllers/auth_controller.dart';
 import '../../../controllers/profile_controller.dart';
 import '../../../core/utils/app_imports.dart';
 import '../../../core/utils/constants.dart';
 import '../../../core/widgets/cached_network_image.dart';
 import '../../../core/widgets/custom_image.dart';
+import '../../help and support/screens/help_and_support_screen.dart';
+import '../../help and support/screens/privacy_policy_screen.dart';
 import '../../user_profile/screens/user_profile_screen.dart';
 import 'drawer_item.dart';
 
@@ -37,11 +40,8 @@ class DrawerWidget extends StatelessWidget {
             ),
             DrawerItem(
               onTap: () {
-                //   PrivacyPolicyApis.privacyPolicyApis.getAboutUs();
-                //   PrivacyPolicyApis.privacyPolicyApis.getTerms();
-                //   PrivacyPolicyApis.privacyPolicyApis.getPrivacy();
-                //
-                // return  Get.to(() => PrivacyPolicyScreen());
+                  PrivacyPolicyApis(); // getAllPrivacyPolicy
+                return  Get.to(() => PrivacyPolicyScreen());
               },
               widget: CustomSvgImage(
                 imageName: "security",
@@ -61,7 +61,7 @@ class DrawerWidget extends StatelessWidget {
             ),
             DrawerItem(
               onTap: () {
-                // Get.to(() => HelpAndSupportScreen());
+                 Get.to(() => HelpAndSupportScreen());
               },
               widget: CustomSvgImage(
                 imageName: "help",
@@ -72,7 +72,7 @@ class DrawerWidget extends StatelessWidget {
             ),
             DrawerItem(
               onTap: () {
-                // Get.to(() => HelpAndSupportScreen());
+                 // Get.to(() => HelpAndSupportScreen());
               },
               widget: CustomSvgImage(
                 imageName: "trackOrder",

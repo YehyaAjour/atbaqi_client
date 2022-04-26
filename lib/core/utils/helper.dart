@@ -1,7 +1,6 @@
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../value/colors.dart';
-import '../widgets/custom_text.dart';
+
 import 'app_imports.dart';
 
 class Helper {

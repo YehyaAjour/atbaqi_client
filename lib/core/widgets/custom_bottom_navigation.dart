@@ -1,7 +1,6 @@
 import 'package:atbaqi_client/controllers/app_controller.dart';
 import 'package:atbaqi_client/core/value/colors.dart';
 import 'package:atbaqi_client/core/widgets/custom_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

@@ -5,7 +5,6 @@ import 'package:atbaqi_client/core/services/firebase_notification.dart';
 import 'package:atbaqi_client/view/main%20screen/Screens/main_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' as myGet;
-import 'package:get/get_core/src/get_main.dart';
 
 import '../controllers/auth_controller.dart';
 import '../core/services/sp_helper.dart';
@@ -14,7 +13,6 @@ import '../core/utils/helper.dart';
 import '../core/utils/progress_dialog_utils.dart';
 import '../models/forget_password_model.dart';
 import '../view/auth/login_screen.dart';
-import '../view/homescreenlayout/screens/home_screen.dart';
 
 class AuthApis {
   AuthApis._();
@@ -73,7 +71,7 @@ class AuthApis {
     try {
       initDio();
       ProgressDialogUtils.show();
-      String fcm = NotificationHelper().getToken();
+      dynamic fcm = NotificationHelper().getToken();
       FormData data = FormData.fromMap({
         'phone': phone,
         "email": email,
@@ -82,7 +80,7 @@ class AuthApis {
         "password": passwordR,
         'password_confirmation': confirmPassword,
         "fcm": fcm,
-        "device": "Test",
+        "device": "android",
       });
       Response response = await dio.post(
         baseUrl + registerUrl,

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/utils/app_imports.dart';
+import '../../favourite/screens/favourite_screen.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -16,7 +17,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
         // backgroundColor: Colors.white,
         body: GetBuilder<AppController>(
           init: AppController(),
@@ -32,7 +32,7 @@ class PageNav {
   static List<Widget> widgetOptions = <Widget>[
     HomeScreen(),
     Container(),
-    Container(),
+    FavouriteScreen(),
     UserProfileScreen(),
   ];
 }

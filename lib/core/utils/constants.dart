@@ -17,3 +17,20 @@ String updateProfileUrl = "user/update-profile";
 String categoriesUrl = "user/categories-all";
 String homeMealsUrl = "user/family-home";
 String allFamilesUrl = "user/family-all";
+
+
+//==================Setttings ( About us - terms , privacy)==================
+String aboutUsUrl = "user/about-us";
+String termsUrl = "user/terms";
+String privacyUrl = "user/privacy";
+
+//==================Contact Us==================
+String contactUsUrl = "user/contact-us";
+
+//==================Favourites==================
+String AddToFavouriteURL = "user/add-favorite";
+String RemoveFromFavouriteURL = "user/remove-favorite";
+String GetAllFavourite = "user/favorite-list";
+
+
+

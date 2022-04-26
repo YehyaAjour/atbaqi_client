@@ -3,7 +3,6 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../core/utils/app_imports.dart';
-import '../core/value/colors.dart';
 import '../models/profile_model.dart';
 
 class ProfileController extends GetxController {
