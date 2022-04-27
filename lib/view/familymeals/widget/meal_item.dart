@@ -1,5 +1,6 @@
 
 
+import 'package:atbaqi_client/core/utils/constants.dart';
 import 'package:atbaqi_client/core/widgets/custom_image.dart';
 
 import '../../../core/utils/app_imports.dart';
@@ -26,7 +27,7 @@ class MealsItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CachedNetworkImageShare(
-                    mealImage, 55, 78, 8),
+                    baseImageUrl+mealImage, 55, 78, 8),
                 CustomText(
                mealName,
                   fontSize: 16.sp,
