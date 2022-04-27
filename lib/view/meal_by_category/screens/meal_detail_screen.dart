@@ -1,4 +1,6 @@
 
+import 'package:atbaqi_client/core/utils/constants.dart';
+
 import '../../../controllers/home_controller.dart';
 import '../../../core/utils/app_imports.dart';
 import '../../../core/utils/helper.dart';
@@ -43,7 +45,7 @@ class MealDetailsScreen extends StatelessWidget {
               Row(
                 children: [
                   CachedNetworkImageShare(
-                     image,
+                     baseImageUrl+image,
                       98,
                       135,
                       1),
