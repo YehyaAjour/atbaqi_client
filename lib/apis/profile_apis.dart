@@ -38,10 +38,11 @@ class ProfileApis {
           },
         ),
       );
-      // print(" getProfile ${response.data}");
+       print(" getProfile Successful ${response.data}");
       if (response.data["status"]) {
         profileController.getProfileData.value =
             ProfileModel.fromJson(response.data);
+        print(" Store response in  ProfileModel Successful ${response.data}");
         Helper.getSheetSucsses(response.data);
       } else {}
     } catch (err) {

@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/utils/app_imports.dart';
+import '../../cart/screens/my_cart_screen.dart';
 import '../../favourite/screens/favourite_screen.dart';
+import '../../homescreenlayout/widget/drawer_widget.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -14,9 +16,13 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffoldKey,
+        drawer: DrawerWidget(),
         // backgroundColor: Colors.white,
         body: GetBuilder<AppController>(
           init: AppController(),
@@ -31,7 +37,7 @@ class _MainScreenState extends State<MainScreen> {
 class PageNav {
   static List<Widget> widgetOptions = <Widget>[
     HomeScreen(),
-    Container(),
+    MyCartScreen(),
     FavouriteScreen(),
     UserProfileScreen(),
   ];

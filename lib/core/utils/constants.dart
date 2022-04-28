@@ -30,7 +30,12 @@ String contactUsUrl = "user/contact-us";
 //==================Favourites==================
 String AddToFavouriteURL = "user/add-favorite";
 String RemoveFromFavouriteURL = "user/remove-favorite";
-String GetAllFavourite = "user/favorite-list";
+String GetAllFavouriteURL = "user/favorite-list";
+
+//==================Cart==================
+String AddToCartURL = "user/add-cart";
+String GetAllCartListURL = "user/cart-items";
+
 
 
 

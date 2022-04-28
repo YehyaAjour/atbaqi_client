@@ -1,5 +1,6 @@
 import '../../../apis/auth_apis.dart';
 import '../../../apis/privacy_policy_apis.dart';
+import '../../../controllers/app_controller.dart';
 import '../../../controllers/auth_controller.dart';
 import '../../../controllers/profile_controller.dart';
 import '../../../core/utils/app_imports.dart';
@@ -8,6 +9,7 @@ import '../../../core/widgets/cached_network_image.dart';
 import '../../../core/widgets/custom_image.dart';
 import '../../help and support/screens/help_and_support_screen.dart';
 import '../../help and support/screens/privacy_policy_screen.dart';
+import '../../main screen/Screens/main_screen.dart';
 import '../../user_profile/screens/user_profile_screen.dart';
 import 'drawer_item.dart';
 
@@ -25,18 +27,25 @@ class DrawerWidget extends StatelessWidget {
             SizedBox(
               height: 200.h,
             ),
-            DrawerItem(
-              onTap: () {
-                Get.to(() => UserProfileScreen());
-              },
-              widget: CachedNetworkImageShare(
-                  baseImageUrl +
-                      profileController.getProfileData.value.profile[0].image,
-                  35.h,
-                  35.w,
-                  0.r),
-              title:
+            GetBuilder<AppController>(
+              init: AppController(),
+              builder: (controller) {
+                return DrawerItem(
+                  onTap: () async {
+                  await controller.setIndexScreen(3);
+                    Get.to(() => MainScreen());
+                  Get.back();
+                  },
+                  widget: CachedNetworkImageShare(
+                      baseImageUrl +
+                          profileController.getProfileData.value.profile[0].image,
+                      35.h,
+                      35.w,
+                      0.r),
+                  title:
                   profileController.getProfileData.value.profile[0].name ?? "",
+                );
+              },
             ),
             DrawerItem(
               onTap: () {

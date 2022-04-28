@@ -57,7 +57,7 @@ class FavouriteApis {
       } else {
          ProgressDialogUtils.hide();
         print('تمت أضافة الأسرة للمفضلة مؤخراً');
-        Helper.getSheetSucsses(response.data['msg']);
+        Helper.getSheetError(response.data['msg']);
       }
     } catch (err) {
       ProgressDialogUtils.hide();
@@ -102,7 +102,7 @@ class FavouriteApis {
       initDio();
       String token = SPHelper.spHelper.getToken();
       Response response = await dio.get(
-        baseUrl + GetAllFavourite,
+        baseUrl + GetAllFavouriteURL,
         options: Options(
           headers: {
             'auth-token': token,

@@ -11,20 +11,25 @@ final Function onTap;
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        width: 109.w,
-        height: 45.h,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(8.0.r),
-          border: Border.all(
-              width: 1.5, color: AppColors.primaryColor),
+      child: Row(
+        children: [
+          SizedBox(width: 10,),
+          Container(
+            width: 109.w,
+            height: 50.h,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(18.0.r),
+              border: Border.all(
+                  width: 1.5, color: AppColors.primaryColor),
 
-        ),
+            ),
 
-        child: Center(child: CustomText(name,fontSize: 14.sp,)),
+            child: Center(child: CustomText(name,fontSize: 14.sp,textAlign: TextAlign.center,)),
+          ),
+          SizedBox(width: 5,),
+        ],
       ),
     );
   }
 }
-// isSelected?AppColors.primaryColor: Color(0xffffffff),

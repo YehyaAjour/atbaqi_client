@@ -4,6 +4,7 @@ import 'package:atbaqi_client/view/meal_by_category/widget/meal_item.dart';
 import '../../../controllers/home_controller.dart';
 import '../../../core/utils/app_imports.dart';
 import '../../../core/utils/helper.dart';
+import '../../meal_by_category/screens/meal_detail_screen.dart';
 import '../widget/meal_item.dart';
 
 class FamilyDetailsScreen extends StatelessWidget {
@@ -69,6 +70,16 @@ class FamilyDetailsScreen extends StatelessWidget {
                           mealName: value.name,
                           mealImage: value.image,
                           mealPrice: value.price,
+                          onTap: () {
+                            Get.to(MealDetailsScreen(
+                              price: value.price,
+                              mealName: value.name,
+                              numberPerson: value.numberPersons,
+                              image: value.image,
+                              description: value.description,
+                               mealId: value.id.toString(),
+                            ));
+                          },
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) {

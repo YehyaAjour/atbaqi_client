@@ -13,6 +13,8 @@ import '../core/utils/helper.dart';
 import '../core/utils/progress_dialog_utils.dart';
 import '../models/forget_password_model.dart';
 import '../view/auth/login_screen.dart';
+import 'cart_apies.dart';
+import 'favourite_apis.dart';
 
 class AuthApis {
   AuthApis._();
@@ -54,6 +56,8 @@ class AuthApis {
         HomeApis.homeApis.getHome();
         ProfileApis.profileApis.getProfile();
         HomeApis.homeApis.getHome();
+        FavouriteApis.favouriteApis.getAllFavorites();
+        CartApis.cartApis.getAllCartList();
         myGet.Get.offAll(() => MainScreen());
         Helper.getSheetSucsses(response.data['msg']);
       } else {

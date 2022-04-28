@@ -1,3 +1,4 @@
+import 'package:atbaqi_client/apis/cart_apies.dart';
 import 'package:atbaqi_client/apis/home_apis.dart';
 import 'package:atbaqi_client/core/utils/animate_do.dart';
 import 'package:atbaqi_client/core/utils/app_imports.dart';
@@ -32,6 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
         HomeApis.homeApis.getAllCategories();
         HomeApis.homeApis.getHome();
         FavouriteApis.favouriteApis.getAllFavorites();
+        CartApis.cartApis.getAllCartList();
         Get.off(MainScreen());
       }
     });

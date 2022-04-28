@@ -27,47 +27,52 @@ class UserProfileScreen extends StatelessWidget {
                     color: AppColors.primaryColor,
                     width: MediaQuery.of(context).size.width,
                     height: 132.0.h,
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 20.h,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15.0.w),
-                          child: Row(
+                    child: Padding(
+                      padding:  EdgeInsets.symmetric(horizontal: 15.0.w),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               GestureDetector(
-                                onTap: () => Get.back(),
-                                child: Icon(
-                                  Icons.arrow_back,
-                                  color: AppColors.whiteColor,
+                                onTap: () {
+                                  Scaffold.of(context).openDrawer();
+                                },
+                                child: CustomSvgImage(
+                                  imageName: "menu",
+                                  width: 24.w,
+                                  height: 18.h,
+                                  color: Colors.white,
                                 ),
                               ),
-                              Center(
-                                  child: CustomText(
+                              CustomText(
                                 'الحساب الشخصي',
-                                fontSize: 20.sp,
-                                fontFamily: 'din',
                                 color: Colors.white,
-                              )),
-                              Container(),
+                              ),
+
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.notifications,
+                                    color: AppColors.whiteColor,
+                                  )),
                             ],
                           ),
-                        ),
-                        SizedBox(
-                          height: 30.h,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 30.0.w),
-                          child: Row(
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          Row(
                             children: [
+                              SizedBox(width: 15.w,),
                               CustomSvgImage(
                                   imageName: 'chat', width: 29.w, height: 29.h),
                             ],
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   Positioned(
@@ -84,11 +89,10 @@ class UserProfileScreen extends StatelessWidget {
                               child: CachedNetworkImageShare(
                                   baseImageUrl +
                                       profileController.getProfileData.value
-                                          .profile[0].image,
+                                          .profile[0].image??'',
                                   80,
                                   80,
                                   0
-                                  // "$baseImageUrl" + "${value.profile[0].image}" ?? "", 80, 80, 0
                                   ),
                             ),
                             Positioned(

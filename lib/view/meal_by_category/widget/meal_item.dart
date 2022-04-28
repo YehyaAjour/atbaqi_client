@@ -1,9 +1,6 @@
+import 'package:atbaqi_client/core/utils/app_imports.dart';
 import 'package:atbaqi_client/core/utils/constants.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../core/widgets/custom_text.dart';
+import '../../../core/widgets/cached_network_image.dart';
 
 
 class MealItem extends StatelessWidget {
@@ -31,12 +28,8 @@ class MealItem extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: CachedNetworkImage(
-                  fit: BoxFit.cover,
-                  imageUrl: baseImageUrl+imgUrl,
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                ),
+                child: CachedNetworkImageShare(
+                    baseImageUrl + imgUrl, Get.height, 100, 1,fit: BoxFit.cover),
               ),
               SizedBox(
                 width: 14.w,

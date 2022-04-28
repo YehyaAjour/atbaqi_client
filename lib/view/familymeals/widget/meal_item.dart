@@ -51,7 +51,7 @@ class MealsItem extends StatelessWidget {
                   ],
                 ),
                 GestureDetector(
-                    onTap: (){},
+                    onTap: onTap,
                     child: CustomSvgImage(imageName:'addToCart',height: 50.h,width: 50.w,))
 
 

@@ -70,6 +70,7 @@ class MealByCategoryScreen extends StatelessWidget {
                             onTap: () {
                               // await HomeApis.homeApis.getMealById(homeController.getMealByCategory.value.mealsByCategory[index].id.toString());
                               Get.to(MealDetailsScreen(
+                                mealId:value.id.toString(),
                                 categoryName: title,
                                 price: value.price,
                                 description: value.description,

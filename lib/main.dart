@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'controllers/auth_controller.dart';
+import 'controllers/cart_controller.dart';
 import 'controllers/contact_us_controller.dart';
 import 'controllers/favourite_controller.dart';
 import 'controllers/otp_controller.dart';
@@ -60,6 +61,7 @@ class _MyAppState extends State<MyApp> {
         Get.put(PrivacyPolicyController());
         Get.put(ContactUsController());
         Get.put(FavouriteController());
+        Get.put(CartController());
         return GetMaterialApp(
           theme: ThemeData(
               primaryColor: AppColors.primaryColor,
