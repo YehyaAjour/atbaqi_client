@@ -28,7 +28,7 @@ class UserProfileScreen extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     height: 132.0.h,
                     child: Padding(
-                      padding:  EdgeInsets.symmetric(horizontal: 15.0.w),
+                      padding: EdgeInsets.symmetric(horizontal: 15.0.w),
                       child: Column(
                         children: [
                           SizedBox(
@@ -52,7 +52,6 @@ class UserProfileScreen extends StatelessWidget {
                                 'الحساب الشخصي',
                                 color: Colors.white,
                               ),
-
                               IconButton(
                                   onPressed: () {},
                                   icon: Icon(
@@ -66,7 +65,9 @@ class UserProfileScreen extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              SizedBox(width: 15.w,),
+                              SizedBox(
+                                width: 15.w,
+                              ),
                               CustomSvgImage(
                                   imageName: 'chat', width: 29.w, height: 29.h),
                             ],
@@ -88,12 +89,12 @@ class UserProfileScreen extends StatelessWidget {
                               onTap: () => Get.to(() => UpdateProfileScreen()),
                               child: CachedNetworkImageShare(
                                   baseImageUrl +
-                                      profileController.getProfileData.value
-                                          .profile[0].image??'',
+                                          profileController.getProfileData.value
+                                              .profile[0].image ??
+                                      '',
                                   80,
                                   80,
-                                  0
-                                  ),
+                                  0),
                             ),
                             Positioned(
                               right: -10,
@@ -122,15 +123,17 @@ class UserProfileScreen extends StatelessWidget {
                         CustomText(
                           value.profile[0].name ?? "",
                           fontSize: 18.sp,
-                          color: AppColors.whiteColor,
+                          color: AppColors.primaryColor,
                         ),
                         SizedBox(
                           height: 10.h,
                         ),
-                        CustomText(
-                          value.profile[0].phone ?? "",
-                          fontSize: 18.sp,
-                          color: AppColors.whiteColor,
+                        Center(
+                          child: CustomText(
+                            value.profile[0].phone ?? "",
+                            fontSize: 18.sp,
+                            color: AppColors.primaryColor,
+                          ),
                         ),
                         SizedBox(
                           height: 8.h,

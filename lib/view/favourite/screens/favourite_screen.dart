@@ -14,7 +14,9 @@ class FavouriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomAppBar(title: 'المفضلة',),
+        CustomAppBar(
+          title: 'المفضلة',
+        ),
         SizedBox(
           height: 40.h,
         ),
@@ -40,7 +42,9 @@ class FavouriteScreen extends StatelessWidget {
                               familyName: value.name,
                               familyRate: int.parse(value.rating),
                               onTapRemove: () {
-                                FavouriteApis.favouriteApis.removeFromFavourite(value.id);
+                                favouriteController.isFavorite = false;
+                                FavouriteApis.favouriteApis
+                                    .removeFromFavourite(value.id);
                               },
                             );
                           },

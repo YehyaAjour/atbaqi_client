@@ -1,8 +1,9 @@
 import 'package:atbaqi_client/controllers/app_controller.dart';
 import 'package:atbaqi_client/controllers/home_controller.dart';
 import 'package:atbaqi_client/core/services/firebase_notification.dart';
+import 'package:atbaqi_client/core/widgets/custom_error.dart';
 import 'package:atbaqi_client/view/splash/screens/splash_screen.dart';
-import 'package:firebase_core/firebase_core.dart';
+ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -25,7 +26,7 @@ void main() async {
     statusBarColor: AppColors.primaryColor,
   ));
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-
+  customError();
   runApp(
     MyApp(),
   );

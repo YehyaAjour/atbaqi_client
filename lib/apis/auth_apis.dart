@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:atbaqi_client/apis/home_apis.dart';
 import 'package:atbaqi_client/apis/profile_apis.dart';
@@ -43,14 +44,15 @@ class AuthApis {
         'phone': phone,
         'password': password,
       });
-      Response response = await dio.post(baseUrl + loginUrl, data: data);
+      Response response = await dio.post(baseUrl + loginUrl,
+          data: data,
+          options: Options(headers: {"Accept": "application/json"}));
       if (response.data["status"]) {
         await SPHelper.spHelper.setToken(response.data['user']['api_token']);
 
         ProgressDialogUtils.hide();
         ProfileApis.profileApis.getProfile();
-        // HomeApis.homeApis.getAllMeals();
-        // HomeApis.homeApis.getHomeMeals();
+
         print(response.data['user']['api_token']);
         HomeApis.homeApis.getAllCategories();
         HomeApis.homeApis.getHome();
@@ -75,17 +77,21 @@ class AuthApis {
     try {
       initDio();
       ProgressDialogUtils.show();
-      dynamic fcm = NotificationHelper().getToken();
-      FormData data = FormData.fromMap({
-        'phone': phone,
-        "email": email,
-        "name": name,
-        "image": await MultipartFile.fromFile(image.path, filename: image.path),
-        "password": passwordR,
-        'password_confirmation': confirmPassword,
-        "fcm": fcm,
-        "device": "android",
-      });
+      String fcm = await NotificationHelper().getToken();
+      FormData data = FormData.fromMap(
+        {
+          "phone": phone,
+          "email": email,
+          "name": name,
+          "image":
+              await MultipartFile.fromFile(image.path, filename: image.path),
+          "password": passwordR,
+          'password_confirmation': confirmPassword,
+          "fcm": fcm,
+          "device": "android",
+        },
+      );
+      log(data.toString());
       Response response = await dio.post(
         baseUrl + registerUrl,
         options: Options(headers: {"Accept": "application/json"}),

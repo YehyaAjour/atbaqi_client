@@ -1,4 +1,3 @@
-
 import 'package:atbaqi_client/core/utils/progress_dialog_utils.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' as myGet;
@@ -33,22 +32,20 @@ class ProfileApis {
       Response response = await dio.get(
         baseUrl + profileUrl,
         options: Options(
-          headers: {
-            'auth-token': token,
-          },
+          headers: {'auth-token': token, 'Accept': "application/json"},
         ),
       );
-       print(" getProfile Successful ${response.data}");
-      if (response.data["status"]) {
+      print(" getProfile Successful ${response.data}");
+      if (response.statusCode == 200) {
         profileController.getProfileData.value =
             ProfileModel.fromJson(response.data);
-        print(" Store response in  ProfileModel Successful ${response.data}");
-        Helper.getSheetSucsses(response.data);
+        print(" ProfileModel Successful ${response.data}");
       } else {}
     } catch (err) {
       print("getProfile  $err");
     }
   }
+
   updateProfile(
     String phone,
     String name,

@@ -1,3 +1,4 @@
+import 'package:atbaqi_client/controllers/favourite_controller.dart';
 import 'package:atbaqi_client/core/widgets/custom_image.dart';
 
 import '../../../core/utils/app_imports.dart';
@@ -8,10 +9,11 @@ class FavouriteItem extends StatelessWidget {
   final int familyRate;
   final Function onTapRemove;
 
-  const FavouriteItem({this.familyName, this.familyRate,this.onTapRemove});
+  const FavouriteItem({this.familyName, this.familyRate, this.onTapRemove});
 
   @override
   Widget build(BuildContext context) {
+    FavouriteController favouriteController = Get.find();
     return Column(
       children: [
         Padding(
@@ -54,9 +56,12 @@ class FavouriteItem extends StatelessWidget {
                       onTap: onTapRemove,
                       child: Column(
                         children: [
-                          CustomPngImage(
-                            imageName: '172',
-                            color: AppColors.red,
+                          Icon(
+                            favouriteController.isFavorite
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color: AppColors.primaryColor,
+                            size: 30,
                           ),
                           SizedBox(
                             height: 10.h,
