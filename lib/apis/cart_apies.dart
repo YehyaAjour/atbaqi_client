@@ -28,10 +28,6 @@ class CartApis {
     }
   }
 
-
-
-
-
   addToCart(String meal_id,String meal_qty) async {
     try {
       initDio();

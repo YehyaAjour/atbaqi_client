@@ -18,7 +18,6 @@ String categoriesUrl = "user/categories-all";
 String homeMealsUrl = "user/family-home";
 String allFamilesUrl = "user/family-all";
 
-
 //==================Setttings ( About us - terms , privacy)==================
 String aboutUsUrl = "user/about-us";
 String termsUrl = "user/terms";
@@ -35,7 +34,3 @@ String GetAllFavouriteURL = "user/favorite-list";
 //==================Cart==================
 String AddToCartURL = "user/add-cart";
 String GetAllCartListURL = "user/cart-items";
-
-
-
-

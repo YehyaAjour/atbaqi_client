@@ -139,7 +139,7 @@ class HomeScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8.r),
                           border: Border.all(
-                            color: Colors.orange,
+                            color: AppColors.primaryColor,
                           )),
                       child: Center(
                           child: CustomText(
@@ -151,7 +151,6 @@ class HomeScreen extends StatelessWidget {
                   )
                 ],
               ),
-
               Obx(() => homeController.getHomeData.value.status == null
                   ? Helper.loading()
                   : homeController.getHomeData.value.familyHome.length == 0
@@ -174,12 +173,8 @@ class HomeScreen extends StatelessWidget {
                                 HomeApis.homeApis
                                     .getFamilyById(model.id.toString());
                                 Get.to(FamilyDetailsScreen(
-                                  familyId: model.id,
-                                  familyImage: model.image,
-                                  familyName: model.name,
-                                  familyRating: model.rating,
-                                  familyStatus: model.status,
-                                ));
+                                    // familyId: model.id.toString(),
+                                    ));
                               },
                             );
                           },

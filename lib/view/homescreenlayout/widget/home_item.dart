@@ -6,9 +6,9 @@ import 'package:atbaqi_client/models/home_model.dart';
 
 class HomeItem extends StatelessWidget {
   final FamilyHome model;
-  final  Function onTap;
+  final Function onTap;
 
-  const HomeItem({Key key, this.model,this.onTap}) : super(key: key);
+  const HomeItem({Key key, this.model, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +26,7 @@ class HomeItem extends StatelessWidget {
               ClipRRect(
                 borderRadius:
                     BorderRadius.horizontal(right: Radius.circular(12.r)),
-                child: CachedNetworkImageShare(
-                    baseImageUrl + model.image, Get.height, 100, 1),
+                child: CachedNetworkImageShare(model.image, Get.height, 100, 1),
               ),
               SizedBox(
                 width: 10.w,

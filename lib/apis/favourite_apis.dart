@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' as myGet;
 
@@ -9,14 +8,12 @@ import '../core/utils/helper.dart';
 import '../core/utils/progress_dialog_utils.dart';
 import '../models/all_favourite_model.dart';
 
-
 class FavouriteApis {
   FavouriteApis._();
 
   static FavouriteApis favouriteApis = FavouriteApis._();
   Dio dio;
   FavouriteController favouriteController = myGet.Get.find();
-
 
   initDio() {
     if (dio == null) {
@@ -27,11 +24,7 @@ class FavouriteApis {
     }
   }
 
-
-
-
-
-  addToFavourite(int family_id) async {
+  addToFavourite(String family_id) async {
     try {
       initDio();
       String token = SPHelper.spHelper.getToken();
@@ -53,9 +46,9 @@ class FavouriteApis {
         ProgressDialogUtils.hide();
         print('addToFavouriteSuccessful');
         getAllFavorites();
-         Helper.getSheetSucsses(response.data['errNum']);
+        Helper.getSheetSucsses(response.data['errNum']);
       } else {
-         ProgressDialogUtils.hide();
+        ProgressDialogUtils.hide();
         print('تمت أضافة الأسرة للمفضلة مؤخراً');
         Helper.getSheetError(response.data['msg']);
       }
@@ -64,6 +57,7 @@ class FavouriteApis {
       print(err.toString());
     }
   }
+
   removeFromFavourite(int family_id) async {
     try {
       initDio();
@@ -82,20 +76,17 @@ class FavouriteApis {
           },
         ),
       );
-      if (response.statusCode==200) {
+      if (response.statusCode == 200) {
         ProgressDialogUtils.hide();
         print('removeFromFavourite');
         getAllFavorites();
-         Helper.getSheetSucsses(response.data['msg']);
-      } else {
-
-      }
+        Helper.getSheetSucsses(response.data['msg']);
+      } else {}
     } catch (err) {
       ProgressDialogUtils.hide();
       print(err.toString());
     }
   }
-
 
   getAllFavorites() async {
     try {
@@ -118,6 +109,4 @@ class FavouriteApis {
       print(e.toString());
     }
   }
-
-
 }

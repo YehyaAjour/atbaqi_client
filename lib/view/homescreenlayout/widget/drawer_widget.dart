@@ -32,25 +32,28 @@ class DrawerWidget extends StatelessWidget {
               builder: (controller) {
                 return DrawerItem(
                   onTap: () async {
-                  await controller.setIndexScreen(3);
+                    Get.back();
+                    await controller.setIndexScreen(3);
                     Get.to(() => MainScreen());
-                  Get.back();
+                    Get.back();
                   },
                   widget: CachedNetworkImageShare(
                       baseImageUrl +
-                          profileController.getProfileData.value.profile[0].image,
+                          profileController
+                              .getProfileData.value.profile[0].image,
                       35.h,
                       35.w,
                       0.r),
                   title:
-                  profileController.getProfileData.value.profile[0].name ?? "",
+                      profileController.getProfileData.value.profile[0].name ??
+                          "",
                 );
               },
             ),
             DrawerItem(
               onTap: () {
-                  PrivacyPolicyApis(); // getAllPrivacyPolicy
-                return  Get.to(() => PrivacyPolicyScreen());
+                PrivacyPolicyApis(); // getAllPrivacyPolicy
+                return Get.to(() => PrivacyPolicyScreen());
               },
               widget: CustomSvgImage(
                 imageName: "security",
@@ -70,7 +73,7 @@ class DrawerWidget extends StatelessWidget {
             ),
             DrawerItem(
               onTap: () {
-                 Get.to(() => HelpAndSupportScreen());
+                Get.to(() => HelpAndSupportScreen());
               },
               widget: CustomSvgImage(
                 imageName: "help",
@@ -81,7 +84,7 @@ class DrawerWidget extends StatelessWidget {
             ),
             DrawerItem(
               onTap: () {
-                 // Get.to(() => HelpAndSupportScreen());
+                // Get.to(() => HelpAndSupportScreen());
               },
               widget: CustomSvgImage(
                 imageName: "trackOrder",
@@ -122,7 +125,6 @@ class DrawerWidget extends StatelessWidget {
             SizedBox(
               height: 70.h,
             ),
-
             DrawerItem(
               onTap: () {
                 AuthApis.authApis.logOut();

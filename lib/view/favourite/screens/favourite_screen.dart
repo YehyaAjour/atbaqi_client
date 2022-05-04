@@ -1,4 +1,10 @@
 import 'package:atbaqi_client/apis/favourite_apis.dart';
+import 'package:atbaqi_client/apis/home_apis.dart';
+import 'package:atbaqi_client/controllers/home_controller.dart';
+import 'package:atbaqi_client/models/all_familes_model.dart';
+import 'package:atbaqi_client/models/family_by_id_model.dart';
+import 'package:atbaqi_client/models/home_model.dart';
+import 'package:atbaqi_client/view/familymeals/screens/family_details_screen.dart';
 
 import '../../../controllers/favourite_controller.dart';
 import '../../../core/utils/app_imports.dart';
@@ -10,6 +16,7 @@ import '../widget/favourite_item.dart';
 class FavouriteScreen extends StatelessWidget {
   FavouriteController favouriteController = Get.find();
 
+  // FavouriteScreen({Key key, this.model}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -38,14 +45,32 @@ class FavouriteScreen extends StatelessWidget {
                           itemBuilder: (context, index) {
                             var value = favouriteController
                                 .getAllFavouriteData.value.favoriteList[index];
-                            return FavouriteItem(
-                              familyName: value.name,
-                              familyRate: int.parse(value.rating),
-                              onTapRemove: () {
-                                favouriteController.isFavorite = false;
-                                FavouriteApis.favouriteApis
-                                    .removeFromFavourite(value.id);
+                            return GestureDetector(
+                              onTap: () {
+                                Get.to(FamilyDetailsScreen(
+                                  // familyId: favouriteController
+                                  //     .getAllFavouriteData
+                                  //     .value
+                                  //     .favoriteList[index]
+                                  //     .id
+                                  //     .toString(),
+                                  // value :value
+                                  // familyId: value.id,
+                                  // familyImage: "",
+                                  // familyName: value.name,
+                                  // familyRating: value.rating,
+                                  // familyStatus: "",
+                                ));
                               },
+                              child: FavouriteItem(
+                                familyName: value.name,
+                                familyRate: int.parse(value.rating),
+                                onTapRemove: () {
+                                  favouriteController.isFavorite = false;
+                                  FavouriteApis.favouriteApis
+                                      .removeFromFavourite(value.id);
+                                },
+                              ),
                             );
                           },
                           separatorBuilder: (BuildContext context, int index) {
