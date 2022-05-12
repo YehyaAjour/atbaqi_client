@@ -62,28 +62,20 @@ class CartItem extends StatelessWidget {
                   ],
                 ),
                 Spacer(),
-                Column(
+                Row(
                   children: [
-                    IconButton(
-                      icon: Icon(Icons.more_horiz_outlined,size: 30,),
-                      onPressed: () {},
+                    CustomText(
+                      mealPrice ?? '',
+                      fontSize: 16.sp,
+                      color: AppColors.primaryColor,
                     ),
-                    Row(
-                      children: [
-                        CustomText(
-                          mealPrice ?? '',
-                          fontSize: 16.sp,
-                          color: AppColors.primaryColor,
-                        ),
-                        SizedBox(
-                          width: 5.w,
-                        ),
-                        CustomText(
-                          "شيكل",
-                          fontSize: 16.sp,
-                          color: AppColors.primaryColor,
-                        ),
-                      ],
+                    SizedBox(
+                      width: 5.w,
+                    ),
+                    CustomText(
+                      "شيكل",
+                      fontSize: 16.sp,
+                      color: AppColors.primaryColor,
                     ),
                   ],
                 )

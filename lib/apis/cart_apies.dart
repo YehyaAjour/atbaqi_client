@@ -8,7 +8,6 @@ import '../core/utils/constants.dart';
 import '../core/utils/helper.dart';
 import '../core/utils/progress_dialog_utils.dart';
 import '../models/all_cart_list_model.dart';
-import '../models/all_favourite_model.dart';
 
 
 class CartApis {
@@ -55,6 +54,41 @@ class CartApis {
       } else {
         ProgressDialogUtils.hide();
         print('addToCartAlready Added');
+        Helper.getSheetError(response.data['msg']);
+      }
+    } catch (err) {
+      ProgressDialogUtils.hide();
+      print(err.toString());
+    }
+  }
+
+  removeFromCart(String meal_id) async {
+    try {
+      initDio();
+      String token = SPHelper.spHelper.getToken();
+      ProgressDialogUtils.show();
+
+      FormData data = FormData.fromMap({
+        'meal_id': meal_id,
+
+      });
+      Response response = await dio.post(
+        baseUrl + REMOVEFROMCartURL,
+        data: data,
+        options: Options(
+          headers: {
+            'auth-token': token,
+          },
+        ),
+      );
+      if (response.data['status']) {
+        ProgressDialogUtils.hide();
+        print('removeFromCartSuccessful');
+        getAllCartList();
+        Helper.getSheetSucsses(response.data['msg']);
+        getAllCartList();
+      } else {
+        ProgressDialogUtils.hide();
         Helper.getSheetError(response.data['msg']);
       }
     } catch (err) {
