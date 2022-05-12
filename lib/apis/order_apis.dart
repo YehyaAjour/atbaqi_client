@@ -3,12 +3,10 @@ import 'package:atbaqi_client/apis/cart_apies.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' as myGet;
 
-import '../controllers/cart_controller.dart';
 import '../core/services/sp_helper.dart';
 import '../core/utils/constants.dart';
 import '../core/utils/helper.dart';
 import '../core/utils/progress_dialog_utils.dart';
-import '../models/all_cart_list_model.dart';
 
 
 class OrderApis {
@@ -16,7 +14,6 @@ class OrderApis {
 
   static OrderApis orderApis = OrderApis._();
   Dio dio;
-  CartController cartController = myGet.Get.find();
 
 
   initDio() {
@@ -49,7 +46,7 @@ class OrderApis {
       if (response.statusCode==200) {
         ProgressDialogUtils.hide();
         print('CreateOrderSuccessful');
-        Helper.getSheetSucsses('تم ارسال الطبق');
+        Helper.getSheetSucsses(response.data['msg']);
         CartApis.cartApis.getAllCartList();
       } else {
 
