@@ -51,6 +51,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    // SPHelper.spHelper.setToken("");
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       builder: () {

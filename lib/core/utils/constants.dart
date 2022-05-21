@@ -33,4 +33,9 @@ String GetAllFavouriteURL = "user/favorite-list";
 
 //==================Cart==================
 String AddToCartURL = "user/add-cart";
+String REMOVEFROMCartURL = "user/remove-itemCart";
 String GetAllCartListURL = "user/cart-items";
+
+//==================Order==================
+String CREATEORDERURL = "user/order-cart";
+

@@ -40,12 +40,12 @@ class DrawerWidget extends StatelessWidget {
                   widget: CachedNetworkImageShare(
                       baseImageUrl +
                           profileController
-                              .getProfileData.value.profile[0].image,
+                              .getProfileData.value.profiles[0].image,
                       35.h,
                       35.w,
                       0.r),
                   title:
-                      profileController.getProfileData.value.profile[0].name ??
+                      profileController.getProfileData.value.profiles[0].name ??
                           "",
                 );
               },

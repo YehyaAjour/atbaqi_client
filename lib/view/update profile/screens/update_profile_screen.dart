@@ -81,7 +81,7 @@ class UpdateProfileScreen extends StatelessWidget {
                                                     profileController
                                                         .getProfileData
                                                         .value
-                                                        .profile[0]
+                                                        .profiles[0]
                                                         .image ??
                                                 "",
                                             50,
@@ -103,7 +103,7 @@ class UpdateProfileScreen extends StatelessWidget {
                                   CustomTextFormField(
                                       topTitle: "الاسم ",
                                       hint: profileController.getProfileData
-                                              .value.profile[0].name ??
+                                              .value.profiles[0].name ??
                                           "",
                                       onSaved: profileController.setName),
                                   SizedBox(
@@ -112,7 +112,7 @@ class UpdateProfileScreen extends StatelessWidget {
                                   CustomTextFormField(
                                     topTitle: "رقم الجوال",
                                     hint: profileController.getProfileData.value
-                                            .profile[0].phone ??
+                                            .profiles[0].phone ??
                                         "",
                                     onSaved: profileController.setPhoneNumber,
                                   ),

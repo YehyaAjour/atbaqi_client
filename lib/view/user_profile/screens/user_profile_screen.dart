@@ -90,7 +90,7 @@ class UserProfileScreen extends StatelessWidget {
                               child: CachedNetworkImageShare(
                                   baseImageUrl +
                                           profileController.getProfileData.value
-                                              .profile[0].image ??
+                                              .profiles[0].image ??
                                       '',
                                   80,
                                   80,
@@ -122,10 +122,10 @@ class UserProfileScreen extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            print(value.profile[0].name);
+                            print(value.profiles[0].name);
                           },
                           child: CustomText(
-                            value.profile[0].name ?? "",
+                            value.profiles[0].name ?? "",
                             fontSize: 18.sp,
                             color: AppColors.red,
                           ),
@@ -135,7 +135,7 @@ class UserProfileScreen extends StatelessWidget {
                         ),
                         Center(
                           child: CustomText(
-                            value.profile[0].phone ?? "",
+                            value.profiles[0].phone ?? "",
                             fontSize: 18.sp,
                             color: AppColors.primaryColor,
                           ),
