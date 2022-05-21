@@ -1,4 +1,3 @@
-
 import 'package:atbaqi_client/apis/cart_apies.dart';
 import 'package:atbaqi_client/controllers/app_controller.dart';
 import 'package:dio/dio.dart';
@@ -14,7 +13,6 @@ import '../models/order_details_model.dart';
 import '../models/order_status_model.dart';
 import '../view/order_status/screens/order_status_screen.dart';
 
-
 class OrderApis {
   OrderApis._();
 
@@ -22,7 +20,6 @@ class OrderApis {
   Dio dio;
   OrderController orderController = myGet.Get.find();
   AppController appController = myGet.Get.find();
-
 
   initDio() {
     if (dio == null) {
@@ -51,21 +48,19 @@ class OrderApis {
           },
         ),
       );
-      if (response.statusCode==200) {
+      if (response.statusCode == 200) {
         CartApis.cartApis.getAllCartList();
         ProgressDialogUtils.hide();
         appController.setIndexEstates(0);
         myGet.Get.to(OrderStatusScreen());
         Helper.getSheetSucsses(response.data['msg']);
-
-      } else {
-
-      }
+      } else {}
     } catch (err) {
       ProgressDialogUtils.hide();
       print(err.toString());
     }
   }
+
   getAllOrderList() async {
     try {
       initDio();
@@ -73,10 +68,7 @@ class OrderApis {
       Response response = await dio.get(
         baseUrl + AllORDERURL,
         options: Options(
-          headers: {
-            'auth-token': token,
-            'Accept':'application/json'
-          },
+          headers: {'auth-token': token, 'Accept': 'application/json'},
         ),
       );
       if (response.statusCode == 200) {
@@ -90,26 +82,24 @@ class OrderApis {
   }
 
   getOrderDetails(var orderId) async {
-    try {
-      initDio();
-      String token = SPHelper.spHelper.getToken();
-      Response response = await dio.get(
-        baseUrl + 'user/order/$orderId',
-        options: Options(
-          headers: {
-            'auth-token': token,
-            'Accept':'application/json'
-          },
-        ),
-      );
-      if (response.statusCode == 200) {
-        orderController.getOrderDetailsData.value =
-            OrderDetailsModel.fromJson(response.data);
-        print("Store in  Order Details Model Successful ${response.data}");
-      } else {}
-    } catch (e) {
-      print(e.toString());
-    }
+    // try {
+    orderController.getOrderDetailsData.value = OrderDetailsModel();
+    initDio();
+    String token = SPHelper.spHelper.getToken();
+    Response response = await dio.get(
+      baseUrl + 'user/order/$orderId',
+      options: Options(
+        headers: {'auth-token': token, 'Accept': 'application/json'},
+      ),
+    );
+    if (response.statusCode == 200) {
+      orderController.getOrderDetailsData.value =
+          OrderDetailsModel.fromJson(response.data);
+      print("Store in  Order Details Model Successful ${response.data}");
+    } else {}
+    // } catch (e) {
+    //   print(e.toString());
+    // }
   }
 
   getOrderStatus(var orderId) async {
@@ -119,10 +109,7 @@ class OrderApis {
       Response response = await dio.get(
         baseUrl + 'user/order-status/$orderId',
         options: Options(
-          headers: {
-            'auth-token': token,
-            'Accept':'application/json'
-          },
+          headers: {'auth-token': token, 'Accept': 'application/json'},
         ),
       );
       if (response.statusCode == 200) {
@@ -134,9 +121,4 @@ class OrderApis {
       print(e.toString());
     }
   }
-
-
-
-
-
 }

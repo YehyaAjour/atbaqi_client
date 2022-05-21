@@ -53,7 +53,7 @@ class MyOrderScreen extends StatelessWidget {
                             orderNumber: value.id.toString(),
                             familyName: value.family.name,
                             onTap: (){
-                              OrderApis.orderApis.getOrderStatus(value.id);
+                              OrderApis.orderApis.getOrderDetails(value.id);
                               Get.to(OrderStatusScreen());
                               // orderController.getOrderDetailsData.value =
                               //     OrderDetailsModel.fromJson({});

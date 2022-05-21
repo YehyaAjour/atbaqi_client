@@ -1,6 +1,6 @@
 import 'package:atbaqi_client/controllers/app_controller.dart';
 import 'package:atbaqi_client/models/message_model.dart';
-  import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 class FireBaseHelper {
@@ -10,12 +10,12 @@ class FireBaseHelper {
   static FireBaseHelper fireBaseHelper = FireBaseHelper._();
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   newMessage({MessageModel message, String senderId, String reciverId}) async {
-    firestore.collection('Chats').doc('$reciverId$senderId').set({
-      "users": [senderId, reciverId],
+    firestore.collection('Chats').doc('$senderId$reciverId').set({
+      "users": [reciverId, senderId],
     });
     firestore
         .collection('Chats')
-        .doc('$reciverId$senderId')
+        .doc('$senderId$reciverId')
         .collection('Messages')
         .add(message.toJson());
   }
@@ -32,7 +32,7 @@ class FireBaseHelper {
   updateReadMessage(String senderId, String reciverId) async {
     QuerySnapshot querySnapshot = await firestore
         .collection('Chats')
-        .doc('$reciverId$senderId')
+        .doc('$senderId$reciverId')
         .collection('Messages')
         .where('recieverId', isEqualTo: senderId)
         .get();
@@ -94,7 +94,7 @@ class FireBaseHelper {
   Stream<QuerySnapshot> getAllChatMessages(String reciverId, String senderId) {
     Stream<QuerySnapshot> stream = FirebaseFirestore.instance
         .collection('Chats')
-        .doc('$reciverId$senderId')
+        .doc('$senderId$reciverId')
         .collection('Messages')
         .orderBy('timeStamp')
         .snapshots();
@@ -105,7 +105,7 @@ class FireBaseHelper {
       String reciverId, String senderId) async {
     QuerySnapshot stream = await FirebaseFirestore.instance
         .collection('Chats')
-        .doc('$reciverId$senderId')
+        .doc('$senderId$reciverId')
         .collection('Messages')
         .orderBy('timeStamp')
         .get();

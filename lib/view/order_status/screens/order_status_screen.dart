@@ -52,62 +52,86 @@ class _OrderStatusScreenState extends State<OrderStatusScreen> {
           SizedBox(
             height: 21.h,
           ),
-          Expanded(
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadiusDirectional.only(
-                    topStart: Radius.circular(20),
-                    topEnd: Radius.circular(20),
-                  )),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 21.h,
-                  ),
-                  CustomText(
-                    'حالة الطلب',
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'din',
-                  ),
-                  SizedBox(
-                    height: 37.h,
-                  ),
-                  GetBuilder<AppController>(
-                    id: 'indexEstates',
-                    init: AppController(),
-                    builder: (controller) {
-                      var value =
-                          orderController.getOrderStatusData.value.orderStatus;
-                      return Column(
-                        children: [
-                         value == 'rejected'?OrderRejected()
-                             : StepperRealEstates(
-                              value == 'pending' ? 0
-                                  : value == 'processing' ? 1
-                              // : value == 'processing' ? 2
-                                  : value == 'completed' ? 3
-                                  : 0),
-                          value == 'pending'
-                              ? WaitForFamilyAcceptOrder()
-                              : value == 'processing'
-                              ? OrderInProggress()
-                          // : value == 'processing'
-                          // ? OrderPrepared()
-                              : value == 'completed'
-                              ? OrderReceived()
-                              : CustomText('تم رفض الطلب'),
-                        ],
-                      );
-                    },
-                  ),
-
-                ],
+          Obx(
+            () => Expanded(
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadiusDirectional.only(
+                      topStart: Radius.circular(20),
+                      topEnd: Radius.circular(20),
+                    )),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 21.h,
+                    ),
+                    CustomText(
+                      'حالة الطلب',
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'din',
+                    ),
+                    SizedBox(
+                      height: 37.h,
+                    ),
+                    orderController.getOrderDetailsData.value.status == null
+                        ? Helper.loading()
+                        : GetBuilder<AppController>(
+                            id: 'indexEstates',
+                            init: AppController(),
+                            builder: (controller) {
+                              return Column(
+                                children: [
+                                  orderController.getOrderDetailsData.value
+                                              .orderStatus.status ==
+                                          'rejected'
+                                      ? OrderRejected()
+                                      : StepperRealEstates(orderController
+                                                  .getOrderDetailsData
+                                                  .value
+                                                  .orderStatus
+                                                  .status ==
+                                              'pending'
+                                          ? 0
+                                          : orderController.getOrderDetailsData
+                                                      .value.orderStatus.status ==
+                                                  'processing'
+                                              ? 1
+                                              // : value == 'processing' ? 2
+                                              : orderController
+                                                          .getOrderDetailsData
+                                                          .value
+                                                          .orderStatus
+                                                          .status ==
+                                                      'completed'
+                                                  ? 3
+                                                  : 0),
+                                  orderController.getOrderDetailsData.value
+                                              .orderStatus.status ==
+                                          'pending'
+                                      ? WaitForFamilyAcceptOrder()
+                                      : orderController.getOrderDetailsData
+                                                  .value.orderStatus.status ==
+                                              'processing'
+                                          ? OrderInProggress()
+                                          // : value == 'processing'
+                                          // ? OrderPrepared()
+                                          : orderController.getOrderDetailsData
+                                                      .value.orderStatus.status ==
+                                                  'completed'
+                                              ? OrderReceived()
+                                              : CustomText('تم رفض الطلب'),
+                                ],
+                              );
+                            },
+                          ),
+                  ],
+                ),
               ),
             ),
-          ),
+          )
         ],
       ),
     );

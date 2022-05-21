@@ -58,6 +58,7 @@ class MyCartScreen extends StatelessWidget {
                               var value = cartController
                                   .getCartListData.value.cartItems[index];
                               return Slidable(
+                                
                                 actionPane: SlidableDrawerActionPane(),
                                 actions: [
                                   IconSlideAction(

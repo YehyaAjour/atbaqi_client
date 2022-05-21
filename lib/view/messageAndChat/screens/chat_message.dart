@@ -244,7 +244,7 @@ class _ChatMessangerState extends State<ChatMessanger> {
                               recieverId: widget.otherId,
                               senderId: widget.myId,
                               hour: hour,
-                              timeStamp: "",
+                              timeStamp: FieldValue.serverTimestamp(),
                               isRead: false,
                             ),
                             reciverId: widget.otherId,

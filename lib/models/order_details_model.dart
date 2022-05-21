@@ -1,171 +1,161 @@
+// To parse this JSON data, do
+//
+//     final orderDetailsModel = orderDetailsModelFromJson(jsonString);
+
+import 'dart:convert';
+
+OrderDetailsModel orderDetailsModelFromJson(String str) =>
+    OrderDetailsModel.fromJson(json.decode(str));
+
+String orderDetailsModelToJson(OrderDetailsModel data) =>
+    json.encode(data.toJson());
+
 class OrderDetailsModel {
-  bool status;
-  String errNum;
-  String msg;
-  Order order;
+  OrderDetailsModel({
+    this.status,
+    this.errNum,
+    this.msg,
+    this.orderStatus,
+  });
 
-  OrderDetailsModel({this.status, this.errNum, this.msg, this.order});
+  var status;
+  var errNum;
+  var msg;
+  var orderStatus;
 
-  OrderDetailsModel.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    errNum = json['errNum'];
-    msg = json['msg'];
-    order = json['order'] != null ? new Order.fromJson(json['order']) : null;
-  }
+  factory OrderDetailsModel.fromJson(Map<String, dynamic> json) =>
+      OrderDetailsModel(
+        status: json["status"],
+        errNum: json["errNum"],
+        msg: json["msg"],
+        orderStatus: OrderStatus.fromJson(json["order-status"]),
+      );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['errNum'] = this.errNum;
-    data['msg'] = this.msg;
-    if (this.order != null) {
-      data['order'] = this.order.toJson();
-    }
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        "status": status,
+        "errNum": errNum,
+        "msg": msg,
+        "order-status": orderStatus.toJson(),
+      };
 }
 
-class Order {
-  int id;
-  int userId;
-  String status;
-  String address;
-  String total;
-  int deliveryTime;
-  String deliveryCost;
-  int processingTime;
-  Family family;
-  User user;
-  List<OrderItems> orderItems;
+class OrderStatus {
+  OrderStatus({
+    this.id,
+    this.userId,
+    this.status,
+    this.address,
+    this.total,
+    this.deliveryTime,
+    this.deliveryCost,
+    this.processingTime,
+    this.family,
+    this.user,
+    this.orderItems,
+  });
 
-  Order(
-      {this.id,
-        this.userId,
-        this.status,
-        this.address,
-        this.total,
-        this.deliveryTime,
-        this.deliveryCost,
-        this.processingTime,
-        this.family,
-        this.user,
-        this.orderItems});
+  var id;
+  var userId;
+  var status;
+  var address;
+  var total;
+  var deliveryTime;
+  var deliveryCost;
+  var processingTime;
+  var family;
+  var user;
+  List<OrderItem> orderItems;
 
-  Order.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    userId = json['user_id'];
-    status = json['status'];
-    address = json['address'];
-    total = json['total'];
-    deliveryTime = json['DeliveryTime'];
-    deliveryCost = json['delivery_cost'];
-    processingTime = json['ProcessingTime'];
-    family =
-    json['family'] != null ? new Family.fromJson(json['family']) : null;
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
-    if (json['orderItems'] != null) {
-      orderItems = new List<OrderItems>();
-      json['orderItems'].forEach((v) {
-        orderItems.add(new OrderItems.fromJson(v));
-      });
-    }
-  }
+  factory OrderStatus.fromJson(Map<String, dynamic> json) => OrderStatus(
+        id: json["id"],
+        userId: json["user_id"],
+        status: json["status"],
+        address: json["address"],
+        total: json["total"],
+        deliveryTime: json["DeliveryTime"],
+        deliveryCost: json["delivery_cost"],
+        processingTime: json["ProcessingTime"],
+        family: Family.fromJson(json["family"]),
+        user: User.fromJson(json["user"]),
+        orderItems: List<OrderItem>.from(
+            json["orderItems"].map((x) => OrderItem.fromJson(x))),
+      );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['user_id'] = this.userId;
-    data['status'] = this.status;
-    data['address'] = this.address;
-    data['total'] = this.total;
-    data['DeliveryTime'] = this.deliveryTime;
-    data['delivery_cost'] = this.deliveryCost;
-    data['ProcessingTime'] = this.processingTime;
-    if (this.family != null) {
-      data['family'] = this.family.toJson();
-    }
-    if (this.user != null) {
-      data['user'] = this.user.toJson();
-    }
-    if (this.orderItems != null) {
-      data['orderItems'] = this.orderItems.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "user_id": userId,
+        "status": status,
+        "address": address,
+        "total": total,
+        "DeliveryTime": deliveryTime,
+        "delivery_cost": deliveryCost,
+        "ProcessingTime": processingTime.toIso8601String(),
+        "family": family.toJson(),
+        "user": user.toJson(),
+        "orderItems": List<dynamic>.from(orderItems.map((x) => x.toJson())),
+      };
 }
 
 class Family {
+  Family({
+    this.id,
+    this.name,
+  });
+
   int id;
   String name;
 
-  Family({this.id, this.name});
+  factory Family.fromJson(Map<String, dynamic> json) => Family(
+        id: json["id"],
+        name: json["name"],
+      );
 
-  Family.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+      };
 }
 
-class User {
-  int id;
-  String name;
-  String phone;
-  int totalMeals;
+class OrderItem {
+  OrderItem({
+    this.id,
+    this.meal,
+    this.price,
+    this.quantity,
+  });
 
-  User({this.id, this.name, this.phone, this.totalMeals});
-
-  User.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    phone = json['phone'];
-    totalMeals = json['total_meals'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['phone'] = this.phone;
-    data['total_meals'] = this.totalMeals;
-    return data;
-  }
-}
-
-class OrderItems {
-  Null id;
+  dynamic id;
   Meal meal;
   String price;
   int quantity;
 
-  OrderItems({this.id, this.meal, this.price, this.quantity});
+  factory OrderItem.fromJson(Map<String, dynamic> json) => OrderItem(
+        id: json["id"],
+        meal: Meal.fromJson(json["meal"]),
+        price: json["price"],
+        quantity: json["quantity"],
+      );
 
-  OrderItems.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    meal = json['meal'] != null ? new Meal.fromJson(json['meal']) : null;
-    price = json['price'];
-    quantity = json['quantity'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    if (this.meal != null) {
-      data['meal'] = this.meal.toJson();
-    }
-    data['price'] = this.price;
-    data['quantity'] = this.quantity;
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "meal": meal.toJson(),
+        "price": price,
+        "quantity": quantity,
+      };
 }
 
 class Meal {
+  Meal({
+    this.id,
+    this.name,
+    this.price,
+    this.description,
+    this.numberPersons,
+    this.familyId,
+    this.categoryId,
+    this.image,
+  });
+
   int id;
   String name;
   String price;
@@ -175,37 +165,53 @@ class Meal {
   String categoryId;
   String image;
 
-  Meal(
-      {this.id,
-        this.name,
-        this.price,
-        this.description,
-        this.numberPersons,
-        this.familyId,
-        this.categoryId,
-        this.image});
+  factory Meal.fromJson(Map<String, dynamic> json) => Meal(
+        id: json["id"],
+        name: json["name"],
+        price: json["price"],
+        description: json["description"],
+        numberPersons: json["number_persons"],
+        familyId: json["family_id"],
+        categoryId: json["category_id"],
+        image: json["image"],
+      );
 
-  Meal.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    price = json['price'];
-    description = json['description'];
-    numberPersons = json['number_persons'];
-    familyId = json['family_id'];
-    categoryId = json['category_id'];
-    image = json['image'];
-  }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "price": price,
+        "description": description,
+        "number_persons": numberPersons,
+        "family_id": familyId,
+        "category_id": categoryId,
+        "image": image,
+      };
+}
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['price'] = this.price;
-    data['description'] = this.description;
-    data['number_persons'] = this.numberPersons;
-    data['family_id'] = this.familyId;
-    data['category_id'] = this.categoryId;
-    data['image'] = this.image;
-    return data;
-  }
+class User {
+  User({
+    this.id,
+    this.name,
+    this.phone,
+    this.totalMeals,
+  });
+
+  int id;
+  String name;
+  String phone;
+  int totalMeals;
+
+  factory User.fromJson(Map<String, dynamic> json) => User(
+        id: json["id"],
+        name: json["name"],
+        phone: json["phone"],
+        totalMeals: json["total_meals"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "phone": phone,
+        "total_meals": totalMeals,
+      };
 }
