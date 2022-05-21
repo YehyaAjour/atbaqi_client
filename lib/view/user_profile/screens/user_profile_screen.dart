@@ -77,7 +77,7 @@ class UserProfileScreen extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: 90.0.h,
+                    bottom: -15,
                     left: 0.0,
                     right: 0.0,
                     child: Column(
@@ -120,10 +120,15 @@ class UserProfileScreen extends StatelessWidget {
                         SizedBox(
                           height: 10.h,
                         ),
-                        CustomText(
-                          value.profile[0].name ?? "",
-                          fontSize: 18.sp,
-                          color: AppColors.primaryColor,
+                        GestureDetector(
+                          onTap: () {
+                            print(value.profile[0].name);
+                          },
+                          child: CustomText(
+                            value.profile[0].name ?? "",
+                            fontSize: 18.sp,
+                            color: AppColors.red,
+                          ),
                         ),
                         SizedBox(
                           height: 10.h,
@@ -144,39 +149,28 @@ class UserProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
-              child: Container(
-                width: Get.width,
-                height: Get.height,
-                decoration: BoxDecoration(
-                    color: AppColors.whiteColor,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20.r),
-                        topRight: Radius.circular(20.r))),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 50.h,
-                    ),
-                    ProfileItem(
-                      onTap: () {
-                        // Get.to(() => ClientCommentScreen());
-                      },
-                      title: "طلباتي ",
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    // ProfileItem(
-                    //   onTap: () {
-                    //     // Get.to(() => ClientCommentScreen());
-                    //   },
-                    //   title: "إدارة الحساب/العنوان ",
-                    // ),
-                  ],
-                ),
-              ),
-            )
+            // Column(
+            //   children: [
+            //     SizedBox(
+            //       height: 50.h,
+            //     ),
+            //     ProfileItem(
+            //       onTap: () {
+            //         // Get.to(() => ClientCommentScreen());
+            //       },
+            //       title: "طلباتي ",
+            //     ),
+            //     SizedBox(
+            //       height: 20.h,
+            //     ),
+            //     // ProfileItem(
+            //     //   onTap: () {
+            //     //     // Get.to(() => ClientCommentScreen());
+            //     //   },
+            //     //   title: "إدارة الحساب/العنوان ",
+            //     // ),
+            //   ],
+            // )
           ],
         ),
       ),

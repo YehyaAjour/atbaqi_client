@@ -57,11 +57,7 @@ class AllFamiliesScreen extends StatelessWidget {
                                     .getAllFamiles.value.families[index].id
                                     .toString());
                                 Get.to(FamilyDetailsScreen(
-                                    // familyId: model.id.toString(),
-                                    // familyImage: model.image,
-                                    // familyName: model.name,
-                                    // familyRating: model.rating,
-                                    // familyStatus: model.status,
+                                     
                                     ));
                               },
                               child: HomeItemAll(
