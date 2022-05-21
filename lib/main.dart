@@ -1,5 +1,6 @@
 import 'package:atbaqi_client/controllers/app_controller.dart';
 import 'package:atbaqi_client/controllers/home_controller.dart';
+import 'package:atbaqi_client/controllers/order_controller.dart';
 import 'package:atbaqi_client/core/services/firebase_notification.dart';
 import 'package:atbaqi_client/core/widgets/custom_error.dart';
 import 'package:atbaqi_client/view/splash/screens/splash_screen.dart';
@@ -63,10 +64,11 @@ class _MyAppState extends State<MyApp> {
         Get.put(ContactUsController());
         Get.put(FavouriteController());
         Get.put(CartController());
+        Get.put(OrderController());
         return GetMaterialApp(
           theme: ThemeData(
               primaryColor: AppColors.primaryColor,
-              scaffoldBackgroundColor: AppColors.whiteColor,
+              // scaffoldBackgroundColor: AppColors.whiteColor,
               // ignore: deprecated_member_use
               accentColor: AppColors.primaryColor),
           defaultTransition: Transition.fadeIn,

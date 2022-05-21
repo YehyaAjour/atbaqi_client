@@ -21,6 +21,13 @@ class AppController extends GetxController {
       currentQuantity = 1;
       update();
     }
+  }
 
+
+  int indexEstates = 0;
+
+  setIndexEstates(int value) {
+    this.indexEstates = value;
+    update(['indexEstates']);
   }
 }
