@@ -38,4 +38,6 @@ String GetAllCartListURL = "user/cart-items";
 
 //==================Order==================
 String CREATEORDERURL = "user/order-cart";
+String AllORDERURL = "user/orders";
+String OrderDetailsURL = "user/order";
 

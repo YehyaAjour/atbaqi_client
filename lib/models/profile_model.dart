@@ -1,109 +1,103 @@
-// To parse this JSON data, do
-//
-//     final profileModel = profileModelFromJson(jsonString);
-
-import 'dart:convert';
-
-ProfileModel profileModelFromJson(String str) =>
-    ProfileModel.fromJson(json.decode(str));
-
-String profileModelToJson(ProfileModel data) => json.encode(data.toJson());
-
 class ProfileModel {
-  ProfileModel({
-    this.status,
-    this.errNum,
-    this.msg,
-    this.profiles,
-  });
-
   bool status;
   String errNum;
   String msg;
-  List<Profile> profiles;
+  List<Profiles> profiles;
 
-  factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
-        status: json["status"],
-        errNum: json["errNum"],
-        msg: json["msg"],
-        profiles: List<Profile>.from(
-            json["profiles"].map((x) => Profile.fromJson(x))),
-      );
+  ProfileModel({this.status, this.errNum, this.msg, this.profiles});
 
-  Map<String, dynamic> toJson() => {
-        "status": status,
-        "errNum": errNum,
-        "msg": msg,
-        "profiles": List<dynamic>.from(profiles.map((x) => x.toJson())),
-      };
+  ProfileModel.fromJson(Map<String, dynamic> json) {
+    status = json['status'];
+    errNum = json['errNum'];
+    msg = json['msg'];
+    if (json['profiles'] != null) {
+      profiles = new List<Profiles>();
+      json['profiles'].forEach((v) {
+        profiles.add(new Profiles.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['status'] = this.status;
+    data['errNum'] = this.errNum;
+    data['msg'] = this.msg;
+    if (this.profiles != null) {
+      data['profiles'] = this.profiles.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
-class Profile {
-  Profile({
-    this.id,
-    this.image,
-    this.name,
-    this.phone,
-    this.deviceTokens,
-  });
-
+class Profiles {
   int id;
   String image;
   String name;
   String phone;
-  List<DeviceToken> deviceTokens;
+  List<DeviceTokens> deviceTokens;
 
-  factory Profile.fromJson(Map<String, dynamic> json) => Profile(
-        id: json["id"],
-        image: json["image"],
-        name: json["name"],
-        phone: json["phone"],
-        deviceTokens: List<DeviceToken>.from(
-            json["device_tokens"].map((x) => DeviceToken.fromJson(x))),
-      );
+  Profiles({this.id, this.image, this.name, this.phone, this.deviceTokens});
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "image": image,
-        "name": name,
-        "phone": phone,
-        "device_tokens":
-            List<dynamic>.from(deviceTokens.map((x) => x.toJson())),
-      };
+  Profiles.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    image = json['image'];
+    name = json['name'];
+    phone = json['phone'];
+    if (json['device_tokens'] != null) {
+      deviceTokens = new List<DeviceTokens>();
+      json['device_tokens'].forEach((v) {
+        deviceTokens.add(new DeviceTokens.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['image'] = this.image;
+    data['name'] = this.name;
+    data['phone'] = this.phone;
+    if (this.deviceTokens != null) {
+      data['device_tokens'] = this.deviceTokens.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
-class DeviceToken {
-  DeviceToken({
-    this.id,
-    this.userId,
-    this.fcm,
-    this.device,
-    this.createdAt,
-    this.updatedAt,
-  });
-
+class DeviceTokens {
   int id;
   int userId;
   String fcm;
   String device;
-  DateTime createdAt;
-  DateTime updatedAt;
+  String createdAt;
+  String updatedAt;
 
-  factory DeviceToken.fromJson(Map<String, dynamic> json) => DeviceToken(
-        id: json["id"],
-        userId: json["user_id"],
-        fcm: json["fcm"],
-        device: json["device"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-      );
+  DeviceTokens(
+      {this.id,
+        this.userId,
+        this.fcm,
+        this.device,
+        this.createdAt,
+        this.updatedAt});
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "user_id": userId,
-        "fcm": fcm,
-        "device": device,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
-      };
+  DeviceTokens.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    userId = json['user_id'];
+    fcm = json['fcm'];
+    device = json['device'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['user_id'] = this.userId;
+    data['fcm'] = this.fcm;
+    data['device'] = this.device;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    return data;
+  }
 }

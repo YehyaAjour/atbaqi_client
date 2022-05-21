@@ -23,7 +23,7 @@ class CustomText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      text ?? 'استبدل هذا النص',
+      text ?? 'استبدل',
       textAlign: textAlign ?? TextAlign.start,
       maxLines: maxLines,
       overflow: maxLines != null ? TextOverflow.ellipsis : null,

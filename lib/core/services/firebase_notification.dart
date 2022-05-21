@@ -62,6 +62,7 @@ class NotificationHelper {
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
       'channel_ID',
       'channel name',
+      ' ',
       importance: Importance.max,
       playSound: true,
       showProgress: true,

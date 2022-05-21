@@ -125,7 +125,7 @@ class AuthController extends GetxController {
 
   Future<File> imagePickerExample() async {
     final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+        await ImagePicker.pickImage(source: ImageSource.gallery);
 
     try {
       File croppedFile = await ImageCropper().cropImage(

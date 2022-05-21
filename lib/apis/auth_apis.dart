@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:atbaqi_client/apis/home_apis.dart';
 import 'package:atbaqi_client/apis/profile_apis.dart';
+import 'package:atbaqi_client/core/services/firebase_chat.dart';
 import 'package:atbaqi_client/core/services/firebase_notification.dart';
 import 'package:atbaqi_client/view/main%20screen/Screens/main_screen.dart';
 import 'package:dio/dio.dart';
@@ -99,6 +100,12 @@ class AuthApis {
       );
       if (response.statusCode == 200) {
         ProgressDialogUtils.hide();
+        FireBaseHelper.fireBaseHelper.setUserInformation(
+            id: response.data['data']['id'].toString(),
+            idMobile: response.data['data']['phone'],
+            image: response.data['data']['phone'],
+            name: response.data['data']['name'],
+            type: 'user');
         myGet.Get.off(() => LoginScreen());
         Helper.getSheetSucsses("تم تسجيل الاشتراك بنجاح");
       } else {
