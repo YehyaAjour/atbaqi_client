@@ -64,22 +64,6 @@ class UserProfileScreen extends StatelessWidget {
                                         'الحساب الشخصي',
                                         color: Colors.white,
                                       ),
-                                      IconButton(
-                                          onPressed: () {},
-                                          icon: Icon(
-                                            Icons.notifications,
-                                            color: AppColors.whiteColor,
-                                          )),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 20.h,
-                                  ),
-                                  Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 15.w,
-                                      ),
                                       InkWell(
                                         onTap: () {
                                           FireBaseHelper.fireBaseHelper
@@ -100,6 +84,16 @@ class UserProfileScreen extends StatelessWidget {
                                       ),
                                     ],
                                   ),
+                                  SizedBox(
+                                    height: 20.h,
+                                  ),
+                                  // Row(
+                                  //   children: [
+                                  //     SizedBox(
+                                  //       width: 15.w,
+                                  //     ),
+                                  //   ],
+                                  // ),
                                 ],
                               ),
                             ),

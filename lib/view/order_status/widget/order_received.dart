@@ -26,8 +26,8 @@ class OrderReceived extends StatelessWidget {
         ),
         CustomText(
           status != "delivery"
-              ? 'تم الإستلام'
-              : 'تم التجهيز بانتظار  التسليم من طرفك',
+              ? 'تم الاستلام'
+              : 'تم التجهيز بانتظار الاستلام من طرفك',
           fontSize: 20.sp,
           fontFamily: 'din',
           textAlign: TextAlign.center,

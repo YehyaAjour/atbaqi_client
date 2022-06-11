@@ -44,32 +44,8 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     // SPHelper.spHelper.setToken("");
     return Scaffold(
-      body: Stack(
-        children: [
-          CustomPngImage(
-              imageName: 'splash', height: Get.height, width: Get.width),
-          ZoomIn(
-            duration: Duration(seconds: 2),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CustomPngImage(
-                    imageName: "logo",
-                    height: 190.h,
-                    width: 160.w,
-                    color: AppColors.whiteColor,
-                  ),
-                  CustomText(
-                    "أطباقي للأسر المنتجة",
-                    color: AppColors.whiteColor,
-                  )
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
+      body: 
+     
     );
   }
 }

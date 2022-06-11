@@ -127,6 +127,8 @@ class OrderApis {
     try {
       initDio();
       String token = SPHelper.spHelper.getToken();
+      ProgressDialogUtils.show();
+
       Response response = await dio.put(
         baseUrl + 'user/order/cancel-order/$orderId',
         options: Options(
@@ -136,9 +138,15 @@ class OrderApis {
       if (response.statusCode == 200) {
         myGet.Get.back();
         getAllOrderList();
+        ProgressDialogUtils.hide();
+
         Helper.getSheetSucsses('تم الغاء الطلب');
-      } else {}
+      } else {
+        ProgressDialogUtils.hide();
+      }
     } catch (e) {
+      ProgressDialogUtils.hide();
+
       print(e.toString());
     }
   }
@@ -147,6 +155,8 @@ class OrderApis {
     try {
       initDio();
       String token = SPHelper.spHelper.getToken();
+      ProgressDialogUtils.show();
+
       Response response = await dio.put(
         baseUrl + 'user/order/acceptOrder/$orderId',
         options: Options(
@@ -156,9 +166,15 @@ class OrderApis {
       if (response.statusCode == 200) {
         myGet.Get.back();
         getAllOrderList();
+        ProgressDialogUtils.hide();
+
         Helper.getSheetSucsses('تم استلام الطلب');
-      } else {}
+      } else {
+        ProgressDialogUtils.hide();
+      }
     } catch (e) {
+      ProgressDialogUtils.hide();
+
       print(e.toString());
     }
   }
