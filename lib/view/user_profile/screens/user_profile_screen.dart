@@ -88,7 +88,8 @@ class UserProfileScreen extends StatelessWidget {
                                                           .getProfileData
                                                           .value
                                                           .profiles[0]
-                                                          .phone ??
+                                                          .id
+                                                          .toString() ??
                                                       "");
                                           Get.to(() => MyChatsScreen());
                                         },

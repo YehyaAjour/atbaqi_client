@@ -31,32 +31,32 @@ class HomeScreen extends StatelessWidget {
         SizedBox(
           height: 15.h,
         ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.0.w),
-          child: Container(
-            width: Get.width,
-            height: 40.h,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12.r),
-                border: Border.all(color: AppColors.grey.withOpacity(0.23))),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5.w),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.search,
-                    color: AppColors.grey.withOpacity(0.23),
-                  ),
-                  CustomText(
-                    "قم بالبحث عن وجبتك المفضلة",
-                    fontSize: 14.sp,
-                    color: AppColors.grey.withOpacity(0.23),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ),
+        // Padding(
+        //   padding: EdgeInsets.symmetric(horizontal: 15.0.w),
+        //   child: Container(
+        //     width: Get.width,
+        //     height: 40.h,
+        //     decoration: BoxDecoration(
+        //         borderRadius: BorderRadius.circular(12.r),
+        //         border: Border.all(color: AppColors.grey.withOpacity(0.23))),
+        //     child: Padding(
+        //       padding: EdgeInsets.symmetric(horizontal: 5.w),
+        //       child: Row(
+        //         children: [
+        //           Icon(
+        //             Icons.search,
+        //             color: AppColors.grey.withOpacity(0.23),
+        //           ),
+        //           CustomText(
+        //             "قم بالبحث عن وجبتك المفضلة",
+        //             fontSize: 14.sp,
+        //             color: AppColors.grey.withOpacity(0.23),
+        //           )
+        //         ],
+        //       ),
+        //     ),
+        //   ),
+        // ),
         SizedBox(
           height: 20.h,
         ),

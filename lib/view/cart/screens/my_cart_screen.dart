@@ -28,17 +28,19 @@ class MyCartScreen extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Lottie.asset('assets/images/swipe_right.json',
-                      width: 30, height: 30),
-                  CustomText(
-                    'مرر إلى اليمين للحذف',
-                    fontSize: 12.sp,
-                  ),
-                ],
-              ),
+              cartController.getCartListData.value.cartItems.length == 0
+                  ? SizedBox()
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Lottie.asset('assets/images/swipe_right.json',
+                            width: 30, height: 30),
+                        CustomText(
+                          'مرر إلى اليمين للحذف',
+                          fontSize: 12.sp,
+                        ),
+                      ],
+                    ),
               SizedBox(
                 height: 15.h,
               ),
@@ -58,7 +60,6 @@ class MyCartScreen extends StatelessWidget {
                               var value = cartController
                                   .getCartListData.value.cartItems[index];
                               return Slidable(
-                                
                                 actionPane: SlidableDrawerActionPane(),
                                 actions: [
                                   IconSlideAction(
@@ -118,55 +119,75 @@ class MyCartScreen extends StatelessWidget {
             ],
           ),
         ),
-       Obx(() => cartController.getCartListData.value.cartItems.length >0? Column(
-         children: [
-           Padding(
-             padding: EdgeInsets.symmetric(horizontal: 20.0.w),
-             child: Row(
-               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-               children: [
-                 CustomText('السعر',fontSize: 18.sp,),
-                 CustomText(
-                 '' + ' شيكل ',
-                   fontSize: 18.sp,
-                   color: AppColors.primaryColor,
-                 )
-               ],
-             ),
-           ),
-           SizedBox(height: 20.h,),
-           Row(
-             mainAxisAlignment: MainAxisAlignment.center,
-             children: [
-               CustomButton(title: 'التالي',onTap: (){
-                 showDialog(
-                   context: context,
-                   builder: (ctx) => AlertDialog(
-                     title: CustomText("تأكيد الطلب"),
-                     content: Text("هل أنت متأكد من إرسال الطلب إلى الأسرة؟"),
-                     actions: <Widget>[
-                       TextButton(
-                         onPressed: () {
-                           OrderApis.orderApis.createOrder('gaza');
-                           Get.back();
-                         },
-                         child: CustomText("تأكيد",color: AppColors.green,fontSize: 16.sp,),
-
-                       ),TextButton(
-                         onPressed: () {
-                           Get.back();
-                         },
-                         child: CustomText("إلغاء",fontSize: 16.sp,),
-                       ),
-                     ],
-                   ),
-                 );
-               },),
-             ],
-           ),
-         ],
-       ):SizedBox()),
-        SizedBox(height: 20.h,)
+        Obx(() => cartController.getCartListData.value.cartItems.length > 0
+            ? Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0.w),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomText(
+                          'السعر',
+                          fontSize: 18.sp,
+                        ),
+                        CustomText(
+                          '' + ' شيكل ',
+                          fontSize: 18.sp,
+                          color: AppColors.primaryColor,
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomButton(
+                        title: 'التالي',
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (ctx) => AlertDialog(
+                              title: CustomText("تأكيد الطلب"),
+                              content: Text(
+                                  "هل أنت متأكد من إرسال الطلب إلى الأسرة؟"),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    OrderApis.orderApis.createOrder('gaza');
+                                    Get.back();
+                                  },
+                                  child: CustomText(
+                                    "تأكيد",
+                                    color: AppColors.green,
+                                    fontSize: 16.sp,
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Get.back();
+                                  },
+                                  child: CustomText(
+                                    "إلغاء",
+                                    fontSize: 16.sp,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              )
+            : SizedBox()),
+        SizedBox(
+          height: 20.h,
+        )
       ],
     );
   }

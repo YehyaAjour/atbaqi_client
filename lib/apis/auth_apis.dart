@@ -92,19 +92,22 @@ class AuthApis {
           "device": "android",
         },
       );
-      log(data.toString());
+
       Response response = await dio.post(
         baseUrl + registerUrl,
-        options: Options(headers: {"Accept": "application/json"}),
+        options: Options(
+            headers: {"Accept": "application/json"},
+            validateStatus: (status) => status < 500),
         data: data,
       );
+      log(response.data.toString());
       if (response.statusCode == 200) {
         ProgressDialogUtils.hide();
         FireBaseHelper.fireBaseHelper.setUserInformation(
-            id: response.data['data']['id'].toString(),
-            idMobile: response.data['data']['phone'],
-            image: response.data['data']['phone'],
-            name: response.data['data']['name'],
+            id: response.data['user']['id'].toString(),
+            idMobile: response.data['user']['phone'],
+            image: response.data['user']['phone'],
+            name: response.data['user']['name'],
             type: 'user');
         myGet.Get.off(() => LoginScreen());
         Helper.getSheetSucsses("تم تسجيل الاشتراك بنجاح");
@@ -114,7 +117,7 @@ class AuthApis {
       }
     } catch (err) {
       ProgressDialogUtils.hide();
-      print(err);
+      log(err);
 
       Helper.getSheetError(err.toString());
     }

@@ -52,9 +52,10 @@ class MyChatsScreen extends StatelessWidget {
                               return StreamBuilder<QuerySnapshot>(
                                   stream: FireBaseHelper.fireBaseHelper
                                       .getAllChatMessages(
-                                    myChat[index]['mobile'].toString(),
+                                    myChat[index]['usersInfo']['id'].toString(),
                                     profileController
-                                        .getProfileData.value.profiles[0].phone,
+                                        .getProfileData.value.profiles[0].id
+                                        .toString(),
                                   ),
                                   builder: (context, snapshot) {
                                     if (snapshot.connectionState ==
@@ -77,8 +78,10 @@ class MyChatsScreen extends StatelessWidget {
                                                 .getProfileData
                                                 .value
                                                 .profiles[0]
-                                                .phone,
-                                            otherId: myChat[index]['mobile']
+                                                .id
+                                                .toString(),
+                                            otherId: myChat[index]['usersInfo']
+                                                    ['id']
                                                 .toString(),
                                             id: myChat[index]['usersInfo']['id']
                                                 .toString(),
@@ -86,8 +89,10 @@ class MyChatsScreen extends StatelessWidget {
                                           FireBaseHelper.fireBaseHelper
                                               .updateReadMessage(
                                             profileController.getProfileData
-                                                .value.profiles[0].phone,
-                                            myChat[index]['mobile'].toString(),
+                                                .value.profiles[0].id
+                                                .toString(),
+                                            myChat[index]['usersInfo']['id']
+                                                .toString(),
                                           );
                                         },
                                         child: ChatItem(

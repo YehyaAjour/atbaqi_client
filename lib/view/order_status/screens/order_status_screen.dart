@@ -83,10 +83,14 @@ class _OrderStatusScreenState extends State<OrderStatusScreen> {
                             init: AppController(),
                             builder: (controller) {
                               return Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   orderController.getOrderDetailsData.value
-                                              .orderStatus.status ==
-                                          'rejected'
+                                                  .orderStatus.status ==
+                                              'rejected' ||
+                                          orderController.getOrderDetailsData
+                                                  .value.orderStatus.status ==
+                                              'cancelled'
                                       ? OrderRejected()
                                       : StepperRealEstates(orderController
                                                   .getOrderDetailsData
@@ -95,34 +99,76 @@ class _OrderStatusScreenState extends State<OrderStatusScreen> {
                                                   .status ==
                                               'pending'
                                           ? 0
-                                          : orderController.getOrderDetailsData
-                                                      .value.orderStatus.status ==
+                                          : orderController
+                                                      .getOrderDetailsData
+                                                      .value
+                                                      .orderStatus
+                                                      .status ==
                                                   'processing'
                                               ? 1
                                               // : value == 'processing' ? 2
                                               : orderController
-                                                          .getOrderDetailsData
-                                                          .value
-                                                          .orderStatus
-                                                          .status ==
-                                                      'completed'
-                                                  ? 3
+                                                              .getOrderDetailsData
+                                                              .value
+                                                              .orderStatus
+                                                              .status ==
+                                                          'completed' ||
+                                                      orderController
+                                                              .getOrderDetailsData
+                                                              .value
+                                                              .orderStatus
+                                                              .status ==
+                                                          'accepted'
+                                                  ? 2
                                                   : 0),
                                   orderController.getOrderDetailsData.value
                                               .orderStatus.status ==
                                           'pending'
-                                      ? WaitForFamilyAcceptOrder()
+                                      ? WaitForFamilyAcceptOrder(orderController
+                                          .getOrderDetailsData
+                                          .value
+                                          .orderStatus
+                                          .id
+                                          .toString())
                                       : orderController.getOrderDetailsData
                                                   .value.orderStatus.status ==
                                               'processing'
-                                          ? OrderInProggress()
+                                          ? OrderInProggress(orderController
+                                              .getOrderDetailsData
+                                              .value
+                                              .orderStatus
+                                              .family
+                                              .id
+                                              .toString())
                                           // : value == 'processing'
                                           // ? OrderPrepared()
-                                          : orderController.getOrderDetailsData
-                                                      .value.orderStatus.status ==
-                                                  'completed'
-                                              ? OrderReceived()
-                                              : CustomText('تم رفض الطلب'),
+                                          : orderController
+                                                          .getOrderDetailsData
+                                                          .value
+                                                          .orderStatus
+                                                          .status ==
+                                                      'completed' ||
+                                                  orderController
+                                                          .getOrderDetailsData
+                                                          .value
+                                                          .orderStatus
+                                                          .status ==
+                                                      "delivery"|| orderController
+                                                          .getOrderDetailsData
+                                                          .value
+                                                          .orderStatus
+                                                          .status ==
+                                                      "accepted"
+                                              ? OrderReceived(orderController.getOrderDetailsData.value.orderStatus.status, orderController.getOrderDetailsData.value.orderStatus.id.toString())
+                                              : orderController.getOrderDetailsData.value.orderStatus.status == 'cancelled'
+                                                  ? Center(
+                                                      child: CustomText(
+                                                          'تم الغاء الطلب من قبل المستخدم'),
+                                                    )
+                                                  :orderController.getOrderDetailsData.value.orderStatus.status == 'rejected'?Center(
+                                                      child: CustomText(
+                                                          'تم الغاء الطلب من قبل الأسرة'),
+                                                    ): Container(),
                                 ],
                               );
                             },

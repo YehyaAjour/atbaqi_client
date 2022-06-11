@@ -41,6 +41,7 @@ class MyOrderScreen extends StatelessWidget {
                     )
                   : Expanded(
                       child: ListView.builder(
+                        padding: EdgeInsets.zero,
                         itemCount: orderController
                             .getAllOrderListData.value.order.length,
                         physics: BouncingScrollPhysics(),
@@ -52,7 +53,7 @@ class MyOrderScreen extends StatelessWidget {
                             price: value.total,
                             orderNumber: value.id.toString(),
                             familyName: value.family.name,
-                            onTap: (){
+                            onTap: () {
                               OrderApis.orderApis.getOrderDetails(value.id);
                               Get.to(OrderStatusScreen());
                               // orderController.getOrderDetailsData.value =
@@ -61,7 +62,6 @@ class MyOrderScreen extends StatelessWidget {
 
                               // Get.to(OrderDetailsScreen());
                             },
-
                           );
                         },
                       ),

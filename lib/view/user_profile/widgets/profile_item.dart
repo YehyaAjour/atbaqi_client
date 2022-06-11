@@ -1,4 +1,3 @@
-
 import '../../../core/utils/app_imports.dart';
 
 class ProfileItem extends StatelessWidget {
@@ -13,7 +12,7 @@ class ProfileItem extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
-          child: GestureDetector(
+          child: InkWell(
             onTap: onTap,
             child: Row(
               children: [

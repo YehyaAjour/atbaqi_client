@@ -83,7 +83,7 @@ class FireBaseHelper {
       String image,
       String name,
       String type}) async {
-    await firestore.collection('Users').doc(idMobile).set({
+    await firestore.collection('Users').doc(id).set({
       'id': id,
       'image': image,
       'name': name,

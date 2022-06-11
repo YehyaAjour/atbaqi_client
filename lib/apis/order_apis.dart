@@ -52,6 +52,7 @@ class OrderApis {
         CartApis.cartApis.getAllCartList();
         ProgressDialogUtils.hide();
         appController.setIndexEstates(0);
+        getOrderDetails(response.data['order-created']['id'].toString());
         myGet.Get.to(OrderStatusScreen());
         Helper.getSheetSucsses(response.data['msg']);
       } else {}
@@ -116,6 +117,46 @@ class OrderApis {
         orderController.getOrderStatusData.value =
             OrderStatusModel.fromJson(response.data);
         print("Store in  Order Status Model Model Successful ${response.data}");
+      } else {}
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  cancelOrder(var orderId) async {
+    try {
+      initDio();
+      String token = SPHelper.spHelper.getToken();
+      Response response = await dio.put(
+        baseUrl + 'user/order/cancel-order/$orderId',
+        options: Options(
+          headers: {'auth-token': token, 'Accept': 'application/json'},
+        ),
+      );
+      if (response.statusCode == 200) {
+        myGet.Get.back();
+        getAllOrderList();
+        Helper.getSheetSucsses('تم الغاء الطلب');
+      } else {}
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  accceptOrder(var orderId) async {
+    try {
+      initDio();
+      String token = SPHelper.spHelper.getToken();
+      Response response = await dio.put(
+        baseUrl + 'user/order/acceptOrder/$orderId',
+        options: Options(
+          headers: {'auth-token': token, 'Accept': 'application/json'},
+        ),
+      );
+      if (response.statusCode == 200) {
+        myGet.Get.back();
+        getAllOrderList();
+        Helper.getSheetSucsses('تم استلام الطلب');
       } else {}
     } catch (e) {
       print(e.toString());

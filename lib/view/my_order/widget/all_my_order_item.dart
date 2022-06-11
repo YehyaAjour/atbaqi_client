@@ -44,11 +44,17 @@ class AllMyOrderItem extends StatelessWidget {
                           border:
                               Border.all(color: Colors.grey.withOpacity(0.8))),
                       child: CustomSvgImage(
-                        imageName: order_status == 'pending' ? 'wait'
-                            : order_status == 'rejected' ? 'rejected'
+                        imageName: order_status == 'pending'
+                            ? 'wait'
+                            : order_status == 'rejected' ||
+                                    order_status == 'cancelled'
+                                ? 'rejected'
                                 : 'complete_order',
-                        color: order_status == 'pending' ? Colors.grey
-                            : order_status == 'rejected' ? Colors.red
+                        color: order_status == 'pending'
+                            ? Colors.grey
+                            : order_status == 'rejected' ||
+                                    order_status == 'cancelled'
+                                ? Colors.red
                                 : AppColors.primaryColor,
                       ),
                     ),
@@ -78,17 +84,40 @@ class AllMyOrderItem extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10.r),
                                       border: Border.all(
-                                          color: order_status == 'pending' ? Colors.grey
-                                          : order_status == 'rejected' ? Colors.red
-                                              : Colors.green)),
+                                          color: order_status == 'pending'
+                                              ? Colors.grey
+                                              : order_status == 'rejected' ||
+                                                      order_status ==
+                                                          'cancelled'
+                                                  ? Colors.red
+                                                  : Colors.green)),
                                   child: Center(
                                       child: CustomText(
-                                          order_status == 'pending' ? 'قيد التجهيز'
-                                              : order_status == 'rejected' ? 'مرفوض'
-                                                  : 'مكتمل',
+                                          order_status == 'pending'
+                                              ? 'بانتظا الموافقة'
+                                              : order_status == 'processing'
+                                                  ? "قيد التجهيز"
+                                                  : order_status == 'rejected'
+                                                      ? 'مرفوض'
+                                                      : order_status ==
+                                                                  'completed' ||
+                                                              order_status ==
+                                                                  'accepted'
+                                                          ? 'مكتمل'
+                                                          : order_status ==
+                                                                  'cancelled'
+                                                              ? "ملغي"
+                                                              : order_status ==
+                                                                      'delivery'
+                                                                  ? 'تم التجهيز'
+                                                                  : '',
                                           fontSize: 10.sp,
-                                          color: order_status == 'pending' ? Colors.grey
-                                              : order_status == 'rejected' ? Colors.red
+                                          color: order_status == 'pending'
+                                              ? Colors.grey
+                                              : order_status == 'rejected' ||
+                                                      order_status ==
+                                                          'cancelled'
+                                                  ? Colors.red
                                                   : Colors.green)),
                                 ),
                               ],

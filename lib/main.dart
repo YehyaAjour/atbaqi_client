@@ -56,16 +56,6 @@ class _MyAppState extends State<MyApp> {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       builder: () {
-        Get.put(AuthController());
-        Get.put(ProfileController());
-        Get.put(OTPController());
-        Get.put(AppController());
-        Get.put(HomeController());
-        Get.put(PrivacyPolicyController());
-        Get.put(ContactUsController());
-        Get.put(FavouriteController());
-        Get.put(CartController());
-        Get.put(OrderController());
         return GetMaterialApp(
           theme: ThemeData(
               primaryColor: AppColors.primaryColor,
@@ -82,6 +72,19 @@ class _MyAppState extends State<MyApp> {
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
           ],
+          builder: (context, widget) {
+            Get.put(AuthController());
+            Get.put(ProfileController());
+            Get.put(OTPController());
+            Get.put(AppController());
+            Get.put(HomeController());
+            Get.put(PrivacyPolicyController());
+            Get.put(ContactUsController());
+            Get.put(FavouriteController());
+            Get.put(CartController());
+            Get.put(OrderController());
+            return widget;
+          },
           supportedLocales: const [
             Locale('ar', 'AE'),
           ],

@@ -10,31 +10,7 @@ class AppController extends GetxController {
 
   var listChats = [].obs;
   int countMessageUnRead = 0;
-  testChat() async {
-    await FireBaseHelper.fireBaseHelper
-        .getAllMyChats(myId: mapProfile['userprofile'][0]['jawwal']);
-
-    this.countMessageUnRead = 0;
-    for (var i = 0; i < listChats.length; i++) {
-      QuerySnapshot querySnapshot = await FireBaseHelper.fireBaseHelper
-          .getAllChatMessagesWithoutStream(listChats[i]['mobile'].toString(),
-              mapProfile['userprofile'][0]['jawwal']);
-
-      for (var j = 0; j < querySnapshot.docs.length; j++) {
-        if (querySnapshot.docs[j].data()['senderId'] ==
-            mapProfile['userprofile'][0]['jawwal']) {
-          this.countMessageUnRead = 0;
-        } else {
-          if (!querySnapshot.docs[j].data()['read']) {
-            countMessageUnRead = countMessageUnRead + 1;
-          }
-        }
-
-        update(['notification']);
-      }
-    }
-  }
-
+ 
   setIndexScreen(int value) {
     this.indexScreen = value;
     update();
