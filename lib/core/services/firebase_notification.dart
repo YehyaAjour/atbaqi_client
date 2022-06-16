@@ -1,6 +1,7 @@
 import 'dart:developer';
 
-  import 'package:dio/dio.dart';
+  import 'package:atbaqi_client/apis/order_apis.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
  import 'package:get/get.dart' as my;
@@ -46,7 +47,7 @@ class NotificationHelper {
         print(
             'Message also contained a notification: ${message.notification.title}');
         showNotification(message.notification.title, message.notification.body);
-
+OrderApis.orderApis.getAllOrderList();
        }
     });
   }
@@ -60,7 +61,8 @@ class NotificationHelper {
       title,
       body,
     );
-   }
+    OrderApis.orderApis.getAllOrderList();
+  }
 
   Future<void> _demoNotification(String title, String body) async {
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
@@ -107,7 +109,7 @@ class NotificationHelper {
   //     String token = SPHelper.spHelper.getToken();
   //     my.Get.find<AppController>().getAllOrderData.value =
   //         OrderStatusModel.fromJson({});
-
+  //
   //     Response response = await dio.get(
   //       "http://memeals.herokuapp.com/api/family/order-status/" + id.toString(),
   //       options: Options(
@@ -117,7 +119,7 @@ class NotificationHelper {
   //     if (response.statusCode == 200) {
   //       my.Get.find<AppController>().getAllOrderData.value =
   //           OrderStatusModel.fromJson(response.data);
-
+  //
   //       print(" getStatus ${response.data}");
   //     } else {}
   //   } catch (err) {

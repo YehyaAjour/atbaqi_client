@@ -16,7 +16,7 @@ import 'drawer_item.dart';
 class DrawerWidget extends StatelessWidget {
   ProfileController profileController = Get.find();
   AuthController authController = Get.find();
-
+AppController appController =Get.find();
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -27,29 +27,30 @@ class DrawerWidget extends StatelessWidget {
             SizedBox(
               height: 200.h,
             ),
-            GetBuilder<AppController>(
-              init: AppController(),
-              builder: (controller) {
-                return DrawerItem(
-                  onTap: () async {
-                    Get.back();
-                    await controller.setIndexScreen(3);
-                    Get.to(() => MainScreen());
-                    Get.back();
-                  },
-                  widget: CachedNetworkImageShare(
-                      baseImageUrl +
-                          profileController
-                              .getProfileData.value.profiles[0].image,
-                      35.h,
-                      35.w,
-                      0.r),
-                  title:
-                      profileController.getProfileData.value.profiles[0].name ??
-                          "",
-                );
-              },
-            ),
+            Obx(() {
+              return profileController.getProfileData.value.status==null?SizedBox():
+              DrawerItem(
+                onTap: () async {
+                  Get.back();
+                  await appController.setIndexScreen(3);
+                  Get.to(() => MainScreen());
+                  Get.back();
+                },
+                widget:profileController
+                    .getProfileData.value.status == null ? SizedBox():CachedNetworkImageShare(
+                    baseImageUrl +
+                        profileController
+                            .getProfileData.value.profiles[0].image,
+                    35.h,
+                    35.w,
+                    0.r),
+                title:
+                profileController.getProfileData.value.profiles[0].name ??
+                    "",
+              );
+            }),
+
+
             DrawerItem(
               onTap: () {
                 PrivacyPolicyApis(); // getAllPrivacyPolicy
@@ -62,15 +63,15 @@ class DrawerWidget extends StatelessWidget {
               ),
               title: "سياسة الخصوصية",
             ),
-            DrawerItem(
-              onTap: () {},
-              widget: CustomSvgImage(
-                imageName: "term",
-                height: 24.h,
-                width: 24.w,
-              ),
-              title: "شروط الاستخدام ",
-            ),
+            // DrawerItem(
+            //   onTap: () {},
+            //   widget: CustomSvgImage(
+            //     imageName: "term",
+            //     height: 24.h,
+            //     width: 24.w,
+            //   ),
+            //   title: "شروط الاستخدام ",
+            // ),
             DrawerItem(
               onTap: () {
                 Get.to(() => HelpAndSupportScreen());
@@ -81,17 +82,6 @@ class DrawerWidget extends StatelessWidget {
                 width: 24.w,
               ),
               title: "مساعدة",
-            ),
-            DrawerItem(
-              onTap: () {
-                // Get.to(() => HelpAndSupportScreen());
-              },
-              widget: CustomSvgImage(
-                imageName: "trackOrder",
-                height: 24.h,
-                width: 24.w,
-              ),
-              title: "تتبع الطلب",
             ),
             SizedBox(
               height: 40.h,

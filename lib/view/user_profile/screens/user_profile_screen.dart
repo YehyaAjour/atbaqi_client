@@ -73,8 +73,7 @@ class UserProfileScreen extends StatelessWidget {
                                                           .value
                                                           .profiles[0]
                                                           .id
-                                                          .toString() ??
-                                                      "");
+                                                          .toString());
                                           Get.to(() => MyChatsScreen());
                                         },
                                         child: CustomSvgImage(
@@ -116,8 +115,7 @@ class UserProfileScreen extends StatelessWidget {
                                                       .getProfileData
                                                       .value
                                                       .profiles[0]
-                                                      .image ??
-                                              '',
+                                                      .image ,
                                           80,
                                           80,
                                           0),
@@ -147,7 +145,7 @@ class UserProfileScreen extends StatelessWidget {
                                   height: 10.h,
                                 ),
                                 CustomText(
-                                  value.profiles[0].name ?? "",
+                                  value.profiles[0].name,
                                   fontSize: 18.sp,
                                   color: AppColors.primaryColor,
                                 ),
@@ -156,7 +154,7 @@ class UserProfileScreen extends StatelessWidget {
                                 ),
                                 Center(
                                   child: CustomText(
-                                    value.profiles[0].phone ?? "",
+                                    value.profiles[0].phone,
                                     fontSize: 18.sp,
                                     color: AppColors.primaryColor,
                                   ),
@@ -194,12 +192,7 @@ class UserProfileScreen extends StatelessWidget {
                             SizedBox(
                               height: 20.h,
                             ),
-                            // ProfileItem(
-                            //   onTap: () {
-                            //     // Get.to(() => ClientCommentScreen());
-                            //   },
-                            //   title: "إدارة الحساب/العنوان ",
-                            // ),
+
                           ],
                         ),
                       ),

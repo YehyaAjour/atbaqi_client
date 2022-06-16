@@ -11,12 +11,18 @@ import '../models/meal_by_category_model.dart';
 import '../models/meal_by_id_model.dart';
 
 class HomeApis {
+  HomeApis(){
+    getHome();
+    getAllCategories();
+    getAllFamiles();
+  }
   HomeApis._();
 
   static HomeApis homeApis = HomeApis._();
   Dio dio;
 
   HomeController homeController = myGet.Get.find();
+
   // ProfileController profileController = myGet.Get.find();
 
   initDio() {

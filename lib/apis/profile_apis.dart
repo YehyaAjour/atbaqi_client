@@ -27,6 +27,7 @@ class ProfileApis {
 
   getProfile() async {
     try {
+
       initDio();
       String token = SPHelper.spHelper.getToken();
       Response response = await dio.get(
@@ -73,9 +74,8 @@ class ProfileApis {
       );
       if (response.data["status"]) {
         ProgressDialogUtils.hide();
-        ProfileApis.profileApis.getProfile();
+        getProfile();
         myGet.Get.back();
-        // ProfileApis.profileApis.
         Helper.getSheetSucsses(response.data['msg']);
       } else {
         ProgressDialogUtils.hide();

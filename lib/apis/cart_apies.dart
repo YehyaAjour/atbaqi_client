@@ -8,6 +8,7 @@ import '../core/utils/constants.dart';
 import '../core/utils/helper.dart';
 import '../core/utils/progress_dialog_utils.dart';
 import '../models/all_cart_list_model.dart';
+import '../view/meal_by_category/widget/on_done_cart_dialog.dart';
 
 
 class CartApis {
@@ -51,6 +52,7 @@ class CartApis {
         print('addToCartSuccessful');
         Helper.getSheetSucsses(response.data['errNum']);
         getAllCartList();
+        OnDoneCartDialog.cartApis.showCartDialog();
       } else {
         ProgressDialogUtils.hide();
         print('addToCartAlready Added');
@@ -99,6 +101,8 @@ class CartApis {
 
 
   getAllCartList() async {
+    cartController.getCartListData.value =
+        AllCartListModel();
     try {
       initDio();
       String token = SPHelper.spHelper.getToken();

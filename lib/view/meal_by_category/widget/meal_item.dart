@@ -48,7 +48,7 @@ class MealItem extends StatelessWidget {
                     height: 5.h,
                   ),
                   Container(
-                    width: 170.w,
+                    width: 140.w,
                     child: CustomText(
                       description,
                       fontWeight: FontWeight.normal,
@@ -69,6 +69,7 @@ class MealItem extends StatelessWidget {
                     fontWeight: FontWeight.normal,
                     fontSize: 26.sp,
                     fontFamily: 'din',
+
                   ),
                   CustomText(
                     'شيكل',

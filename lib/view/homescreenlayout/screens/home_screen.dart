@@ -1,4 +1,5 @@
 import 'package:atbaqi_client/apis/home_apis.dart';
+import 'package:atbaqi_client/apis/notification_apies.dart';
 import 'package:atbaqi_client/controllers/home_controller.dart';
 import 'package:atbaqi_client/core/utils/app_imports.dart';
 import 'package:atbaqi_client/core/utils/helper.dart';
@@ -10,13 +11,12 @@ import 'package:atbaqi_client/models/meal_by_category_model.dart';
 import 'package:atbaqi_client/view/all%20familes/screens/all_familes_screen.dart';
 import 'package:atbaqi_client/view/homescreenlayout/widget/home_item.dart';
 import 'package:atbaqi_client/view/meal_by_category/screens/meal_by_category_screen.dart';
-import 'package:flutter/material.dart';
 
-import '../../../apis/auth_apis.dart';
 import '../../../core/widgets/custom_app_bar.dart';
 import '../../../models/family_by_id_model.dart';
 import '../../familymeals/screens/family_details_screen.dart';
 import '../../meal_by_category/widget/category_item.dart';
+import '../../notification/screens/notifications_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeController homeController = Get.find();
@@ -27,36 +27,15 @@ class HomeScreen extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         CustomAppBar(
           title: 'الرئيسية',
+          onTapNotification: (){
+            NotificationApis.notificationApis.getNotificationList();
+            Get.to(NotificationScreen());
+          },
         ),
         SizedBox(
           height: 15.h,
         ),
-        // Padding(
-        //   padding: EdgeInsets.symmetric(horizontal: 15.0.w),
-        //   child: Container(
-        //     width: Get.width,
-        //     height: 40.h,
-        //     decoration: BoxDecoration(
-        //         borderRadius: BorderRadius.circular(12.r),
-        //         border: Border.all(color: AppColors.grey.withOpacity(0.23))),
-        //     child: Padding(
-        //       padding: EdgeInsets.symmetric(horizontal: 5.w),
-        //       child: Row(
-        //         children: [
-        //           Icon(
-        //             Icons.search,
-        //             color: AppColors.grey.withOpacity(0.23),
-        //           ),
-        //           CustomText(
-        //             "قم بالبحث عن وجبتك المفضلة",
-        //             fontSize: 14.sp,
-        //             color: AppColors.grey.withOpacity(0.23),
-        //           )
-        //         ],
-        //       ),
-        //     ),
-        //   ),
-        // ),
+
         SizedBox(
           height: 20.h,
         ),

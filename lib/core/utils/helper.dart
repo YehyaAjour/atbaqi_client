@@ -19,18 +19,18 @@ class Helper {
     return Get.snackbar(
       '',
       '',
-      messageText: Column(
+      messageText: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CustomText(
-            title,
-            fontSize: 16,
-            fontWeight: FontWeight.normal,
-            color: Colors.red,
+          Flexible(
+            child: CustomText(
+              title,
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
+              color: Colors.red,
+            ),
           ),
-          SizedBox(
-            width: ScreenUtil().setWidth(10),
-          ),
+
           Icon(
             Icons.info,
             color: Colors.red,

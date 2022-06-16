@@ -20,18 +20,22 @@ class AllFamiliesScreen extends StatelessWidget {
                 color: AppColors.primaryColor,
                 borderRadius:
                     BorderRadius.only(bottomLeft: Radius.circular(25.r))),
-            child: Row(children: [
-              IconButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  icon: Icon(Icons.arrow_back, color: AppColors.whiteColor)),
-              CustomText(
-                "الاسر المنتجة",
-                color: AppColors.whiteColor,
-                fontSize: 16.sp,
-              )
-            ]),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Row(children: [
+                IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: Icon(Icons.arrow_back, color: AppColors.whiteColor)),
+                SizedBox(width: 10.w,),
+                CustomText(
+                  "الاسر المنتجة",
+                  color: AppColors.whiteColor,
+                  fontSize: 16.sp,
+                )
+              ]),
+            ),
           ),
           Obx(() => homeController.getAllFamiles.value.status == null
               ? Helper.loading()

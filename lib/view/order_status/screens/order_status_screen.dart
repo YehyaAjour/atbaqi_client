@@ -106,7 +106,9 @@ class _OrderStatusScreenState extends State<OrderStatusScreen> {
                                                       .status ==
                                                   'processing'
                                               ? 1
-                                              // : value == 'processing' ? 2
+                                          : orderController
+                                                  .getOrderDetailsData.value
+                                                  .orderStatus.status=='delivery'?2
                                               : orderController
                                                               .getOrderDetailsData
                                                               .value
@@ -119,7 +121,7 @@ class _OrderStatusScreenState extends State<OrderStatusScreen> {
                                                               .orderStatus
                                                               .status ==
                                                           'accepted'
-                                                  ? 2
+                                                  ? 3
                                                   : 0),
                                   orderController.getOrderDetailsData.value
                                               .orderStatus.status ==

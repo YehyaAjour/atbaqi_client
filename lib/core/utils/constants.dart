@@ -12,8 +12,9 @@ String resetPasswordUrl = 'user/reset-password';
 
 //=================== Profile =======================
 String profileUrl = 'user/profile';
-String updateProfileUrl = "user/update-profile";
+String updateProfileUrl = "user/update-profiles";
 //==================Home==================
+
 String categoriesUrl = "user/categories-all";
 String homeMealsUrl = "user/family-home";
 String allFamilesUrl = "user/family-all";
@@ -40,4 +41,5 @@ String GetAllCartListURL = "user/cart-items";
 String CREATEORDERURL = "user/order-cart";
 String AllORDERURL = "user/orders";
 String OrderDetailsURL = "user/order";
-
+//==================Notification==================
+String AllNotificationURL = "user/list-notifications";

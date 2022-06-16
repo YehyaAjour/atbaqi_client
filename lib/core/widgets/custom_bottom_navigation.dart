@@ -1,3 +1,4 @@
+import 'package:atbaqi_client/apis/cart_apies.dart';
 import 'package:atbaqi_client/controllers/app_controller.dart';
 import 'package:atbaqi_client/core/value/colors.dart';
 import 'package:atbaqi_client/core/widgets/custom_text.dart';
@@ -16,7 +17,11 @@ class CustomNavBottom extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.white,
         currentIndex: controller.indexScreen,
-        onTap: controller.setIndexScreen,
+        onTap:(value){
+          controller.setIndexScreen(value);
+          CartApis.cartApis.getAllCartList();
+
+        },
         showSelectedLabels: false,
         type: BottomNavigationBarType.fixed,
         selectedFontSize: 0,

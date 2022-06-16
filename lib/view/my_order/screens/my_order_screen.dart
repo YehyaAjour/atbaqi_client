@@ -35,35 +35,42 @@ class MyOrderScreen extends StatelessWidget {
           Obx(() => orderController.getAllOrderListData.value.order == null
               ? Helper.loading()
               : orderController.getAllOrderListData.value.order.length == 0
-                  ? CustomText(
-                      "لم تقم باضافة اي طلب",
-                      fontSize: 14.sp,
-                    )
+                  ? Center(
+                    child: CustomText(
+                        "لم تقم باضافة اي طلب",
+                        fontSize: 14.sp,
+                      ),
+                  )
                   : Expanded(
-                      child: ListView.builder(
-                        padding: EdgeInsets.zero,
-                        itemCount: orderController
-                            .getAllOrderListData.value.order.length,
-                        physics: BouncingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          var value = orderController
-                              .getAllOrderListData.value.order[index];
-                          return AllMyOrderItem(
-                            order_status: value.status,
-                            price: value.total,
-                            orderNumber: value.id.toString(),
-                            familyName: value.family.name,
-                            onTap: () {
-                              OrderApis.orderApis.getOrderDetails(value.id);
-                              Get.to(OrderStatusScreen());
-                              // orderController.getOrderDetailsData.value =
-                              //     OrderDetailsModel.fromJson({});
-                              // OrderApis.orderApis.getOrderDetails(value.id.toString());
+                      child: RefreshIndicator(
+                        onRefresh: () async{await  OrderApis.orderApis.getAllOrderList(); },
+                        color: AppColors.primaryColor,
 
-                              // Get.to(OrderDetailsScreen());
-                            },
-                          );
-                        },
+                        child: ListView.builder(
+                          padding: EdgeInsets.zero,
+                          itemCount: orderController
+                              .getAllOrderListData.value.order.length,
+                          physics: BouncingScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            var value = orderController
+                                .getAllOrderListData.value.order[index];
+                            return AllMyOrderItem(
+                              order_status: value.status,
+                              price: value.total,
+                              orderNumber: value.id.toString(),
+                              familyName: value.family.name,
+                              onTap: () {
+                                OrderApis.orderApis.getOrderDetails(value.id);
+                                Get.to(OrderStatusScreen());
+                                // orderController.getOrderDetailsData.value =
+                                //     OrderDetailsModel.fromJson({});
+                                // OrderApis.orderApis.getOrderDetails(value.id.toString());
+
+                                // Get.to(OrderDetailsScreen());
+                              },
+                            );
+                          },
+                        ),
                       ),
                     )),
         ],

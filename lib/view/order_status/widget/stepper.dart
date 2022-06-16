@@ -5,7 +5,8 @@ class StepperRealEstates extends StatelessWidget {
   List<String> titles = [
     'بانتظار\n موافقة الأسرة',
     "الطلب\n قيد التحضير",
-    "تم\n التحضير",
+    "تم التجهيز\n بانتظار الإستلام\n من طرفك",
+    "مكتمل",
   ];
 
   //todo:two list: icons and text ;
@@ -20,7 +21,7 @@ class StepperRealEstates extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: List.generate(
-            3,
+            4,
             (i) => Column(
                   // mainAxisAlignment: MainAxisAlignment.center,
                   // crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,7 +54,7 @@ class StepperRealEstates extends StatelessWidget {
                             ),
                           ],
                         ),
-                        i == 2
+                        i == 3
                             ? SizedBox()
                             : i == 0
                                 ? Padding(

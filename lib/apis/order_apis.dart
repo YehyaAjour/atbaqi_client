@@ -48,14 +48,18 @@ class OrderApis {
           },
         ),
       );
-      if (response.statusCode == 200) {
+      if (response.data['status']) {
         CartApis.cartApis.getAllCartList();
         ProgressDialogUtils.hide();
         appController.setIndexEstates(0);
         getOrderDetails(response.data['order-created']['id'].toString());
         myGet.Get.to(OrderStatusScreen());
         Helper.getSheetSucsses(response.data['msg']);
-      } else {}
+      } else {
+        ProgressDialogUtils.hide();
+        Helper.getSheetError(response.data['msg']);
+
+      }
     } catch (err) {
       ProgressDialogUtils.hide();
       print(err.toString());

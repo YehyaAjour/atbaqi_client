@@ -3,8 +3,9 @@ import 'custom_image.dart';
 
 class CustomAppBar extends StatelessWidget {
 final String title;
+final Function onTapNotification;
 
-  const CustomAppBar({Key key, this.title}) : super(key: key);
+  const CustomAppBar({Key key, this.title,this.onTapNotification}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +36,7 @@ final String title;
             ),
 
             IconButton(
-                onPressed: () {},
+                onPressed: onTapNotification,
                 icon: Icon(
                   Icons.notifications,
                   color: AppColors.whiteColor,

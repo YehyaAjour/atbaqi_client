@@ -1,10 +1,13 @@
 import 'package:atbaqi_client/core/utils/constants.dart';
+import 'package:atbaqi_client/view/cart/screens/my_cart_screen.dart';
+import 'package:atbaqi_client/view/main%20screen/Screens/main_screen.dart';
 
 import '../../../apis/cart_apies.dart';
 import '../../../controllers/app_controller.dart';
 import '../../../controllers/home_controller.dart';
 import '../../../core/utils/app_imports.dart';
 import '../../../core/widgets/cached_network_image.dart';
+import '../../familymeals/screens/family_details_screen.dart';
 import '../widget/add_to_cart_button.dart';
 
 class MealDetailsScreen extends StatelessWidget {
@@ -152,8 +155,8 @@ class MealDetailsScreen extends StatelessWidget {
                 price: price,
                 onIncreaseIconPressed: (){controller.increaseCurrentQuantity();},
                 onDecreaseIconPressed: (){controller.decreaseCurrentQuantity();},
-                onPressedAddToCart: (){
-                  CartApis.cartApis.addToCart(mealId, controller.currentQuantity.toString());
+                onPressedAddToCart: () async {
+                 await CartApis.cartApis.addToCart(mealId, controller.currentQuantity.toString());
 
                 },
               ),

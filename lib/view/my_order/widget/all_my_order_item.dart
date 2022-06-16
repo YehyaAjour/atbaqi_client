@@ -42,20 +42,39 @@ class AllMyOrderItem extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.r),
                           border:
-                              Border.all(color: Colors.grey.withOpacity(0.8))),
+                              Border.all(color:order_status == 'pending'
+                                  ? Colors.grey.withOpacity(0.8)
+                                  : order_status == 'processing'
+                                  ? AppColors.primaryColor
+                                  : order_status == 'delivery'
+                                  ? AppColors.primaryColor
+                                  : order_status == 'rejected' ||
+                                  order_status ==
+                                      'cancelled'
+                                  ? Colors.red
+                                  : Colors.green
+                              )),
                       child: CustomSvgImage(
                         imageName: order_status == 'pending'
                             ? 'wait'
+                            : order_status == 'processing'
+                            ? 'inproggress'
+                            : order_status == 'delivery'
+                            ? 'delivery'
                             : order_status == 'rejected' ||
                                     order_status == 'cancelled'
                                 ? 'rejected'
                                 : 'complete_order',
                         color: order_status == 'pending'
                             ? Colors.grey
+                            : order_status == 'processing'
+                            ? AppColors.primaryColor
+                            : order_status == 'delivery'
+                            ? AppColors.primaryColor
                             : order_status == 'rejected' ||
                                     order_status == 'cancelled'
                                 ? Colors.red
-                                : AppColors.primaryColor,
+                                : Colors.green,
                       ),
                     ),
                     SizedBox(
@@ -80,12 +99,17 @@ class AllMyOrderItem extends StatelessWidget {
                                 Spacer(),
                                 Container(
                                   height: 25.h,
-                                  width: 60.w,
+                                  width: 65.w,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10.r),
                                       border: Border.all(
                                           color: order_status == 'pending'
                                               ? Colors.grey
+                                              : order_status == 'processing'
+                                              ? AppColors.primaryColor
+                                              : order_status ==
+                                              'delivery'
+                                              ? AppColors.primaryColor
                                               : order_status == 'rejected' ||
                                                       order_status ==
                                                           'cancelled'
@@ -109,11 +133,15 @@ class AllMyOrderItem extends StatelessWidget {
                                                               ? "ملغي"
                                                               : order_status ==
                                                                       'delivery'
-                                                                  ? 'تم التجهيز'
+                                                                  ? 'بانتظار الإستلام'
                                                                   : '',
                                           fontSize: 10.sp,
                                           color: order_status == 'pending'
                                               ? Colors.grey
+                                              : order_status == 'processing'
+                                              ? AppColors.primaryColor
+                                              : order_status == 'delivery'
+                                              ? AppColors.primaryColor
                                               : order_status == 'rejected' ||
                                                       order_status ==
                                                           'cancelled'

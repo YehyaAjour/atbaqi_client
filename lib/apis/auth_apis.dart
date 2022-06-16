@@ -48,7 +48,7 @@ class AuthApis {
       Response response = await dio.post(baseUrl + loginUrl,
           data: data,
           options: Options(headers: {"Accept": "application/json"}));
-      if (response.data["status"]) {
+      if (response.statusCode==200 && response.data['errNum']!='401') {
         await SPHelper.spHelper.setToken(response.data['user']['api_token']);
 
         ProgressDialogUtils.hide();
@@ -63,9 +63,15 @@ class AuthApis {
         CartApis.cartApis.getAllCartList();
         myGet.Get.offAll(() => MainScreen());
         Helper.getSheetSucsses(response.data['msg']);
-      } else {
-        ProgressDialogUtils.hide();
+      } else{
         Helper.getSheetError(response.data['msg']);
+        ProgressDialogUtils.hide();
+      }
+    }on DioError catch(err){
+      ProgressDialogUtils.hide();
+      Map map = err.response.data['errors'];
+      if(map.containsKey('phone')){
+        Helper.getSheetError(map['phone'][0]);
       }
     } catch (err) {
       ProgressDialogUtils.hide();
@@ -111,17 +117,26 @@ class AuthApis {
             type: 'user');
         myGet.Get.off(() => LoginScreen());
         Helper.getSheetSucsses("تم تسجيل الاشتراك بنجاح");
-      } else {
+      } else if(response.statusCode<500){
         ProgressDialogUtils.hide();
-        Helper.getSheetError("هناك خطأ");
+        Map map = response.data['errors'];
+        if(map.containsKey('name')){
+          Helper.getSheetError(map['name'][0]);
+
+        }else if(map.containsKey('phone')){
+          Helper.getSheetError(map['phone'][0]);
+
+        }else if(map.containsKey('email')){
+          Helper.getSheetError(map['email'][0]);
+
+        }
+
       }
     } catch (err) {
       ProgressDialogUtils.hide();
       log(err);
-
       Helper.getSheetError(err.toString());
-    }
-  }
+  }}
 
   logOut() async {
     try {
