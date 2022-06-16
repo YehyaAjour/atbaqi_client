@@ -1,11 +1,12 @@
+import '../../apis/notification_apies.dart';
+import '../../view/notification/screens/notifications_screen.dart';
 import '../utils/app_imports.dart';
 import 'custom_image.dart';
 
 class CustomAppBar extends StatelessWidget {
 final String title;
-final Function onTapNotification;
 
-  const CustomAppBar({Key key, this.title,this.onTapNotification}) : super(key: key);
+  const CustomAppBar({Key key, this.title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,7 +37,10 @@ final Function onTapNotification;
             ),
 
             IconButton(
-                onPressed: onTapNotification,
+                onPressed: (){
+                  NotificationApis.notificationApis.getNotificationList();
+                  Get.to(NotificationScreen());
+                },
                 icon: Icon(
                   Icons.notifications,
                   color: AppColors.whiteColor,

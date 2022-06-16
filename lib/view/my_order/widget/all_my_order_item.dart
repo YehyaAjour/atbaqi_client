@@ -118,7 +118,7 @@ class AllMyOrderItem extends StatelessWidget {
                                   child: Center(
                                       child: CustomText(
                                           order_status == 'pending'
-                                              ? 'بانتظا الموافقة'
+                                              ? 'بانتظار الموافقة'
                                               : order_status == 'processing'
                                                   ? "قيد التجهيز"
                                                   : order_status == 'rejected'

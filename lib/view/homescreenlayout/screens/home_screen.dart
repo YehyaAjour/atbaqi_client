@@ -27,10 +27,6 @@ class HomeScreen extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         CustomAppBar(
           title: 'الرئيسية',
-          onTapNotification: (){
-            NotificationApis.notificationApis.getNotificationList();
-            Get.to(NotificationScreen());
-          },
         ),
         SizedBox(
           height: 15.h,

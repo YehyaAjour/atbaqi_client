@@ -5,7 +5,7 @@ class StepperRealEstates extends StatelessWidget {
   List<String> titles = [
     'بانتظار\n موافقة الأسرة',
     "الطلب\n قيد التحضير",
-    "تم التجهيز\n بانتظار الإستلام\n من طرفك",
+    "تم التحضير\n بانتظار الاستلام",
     "مكتمل",
   ];
 
