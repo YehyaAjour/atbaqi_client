@@ -6,7 +6,7 @@ import 'package:atbaqi_client/core/utils/helper.dart';
 
 import '../../../core/utils/app_imports.dart';
 import '../../../core/widgets/cached_network_image.dart';
-import '../../user_profile/widgets/custom_rate.dart';
+import '../../profile/widgets/custom_rate.dart';
 
 class TopScreenPart extends StatelessWidget {
   HomeController homeController = Get.find();

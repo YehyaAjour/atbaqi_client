@@ -1,5 +1,6 @@
 import 'package:atbaqi_client/controllers/app_controller.dart';
 import 'package:atbaqi_client/controllers/profile_controller.dart';
+import 'package:atbaqi_client/core/value/colors.dart';
 import 'package:atbaqi_client/view/messageAndChat/screens/chat_message.dart';
 import 'package:atbaqi_client/view/order_status/widget/stepper.dart';
 
@@ -9,7 +10,8 @@ import '../../../core/widgets/custom_image.dart';
 
 class OrderInProggress extends StatelessWidget {
   String familyId;
-  OrderInProggress(this.familyId);
+  String processTime;
+  OrderInProggress(this.familyId,this.processTime);
   AppController appController = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,20 @@ class OrderInProggress extends StatelessWidget {
         ),
         CustomText('الطلب قيد التحضير', fontSize: 20.sp, fontFamily: 'din'),
         SizedBox(
-          height: 110.h,
+          height: 24.h,
+        ),
+        CustomText('الوقت المقدر لتحضير طلبك من قبل الأسرة :', fontSize: 20.sp, fontFamily: 'din',fontWeight: FontWeight.normal,),
+        SizedBox(
+          height: 15.h,
+        ),
+        CustomText(processTime.split(' ').first, fontSize: 20.sp, fontFamily: 'din',color: AppColors.primaryColor,),
+        SizedBox(
+          height: 5.h,
+        ),
+        CustomText(processTime.split(' ').last, fontSize: 20.sp, fontFamily: 'din',color: AppColors.primaryColor,),
+
+        SizedBox(
+          height: 55.h,
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0.w),

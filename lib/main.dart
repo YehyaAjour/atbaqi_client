@@ -27,6 +27,7 @@ void main() async {
     statusBarColor: AppColors.primaryColor,
   ));
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  print(SPHelper.spHelper.getToken());
   // customError();
   runApp(
     MyApp(),

@@ -1,8 +1,7 @@
 import 'package:atbaqi_client/controllers/favourite_controller.dart';
-import 'package:atbaqi_client/core/widgets/custom_image.dart';
 
 import '../../../core/utils/app_imports.dart';
-import '../../user_profile/widgets/custom_rate.dart';
+import '../../profile/widgets/custom_rate.dart';
 
 class FavouriteItem extends StatelessWidget {
   final String familyName;

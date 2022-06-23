@@ -1,16 +1,10 @@
 import 'package:atbaqi_client/apis/favourite_apis.dart';
-import 'package:atbaqi_client/apis/home_apis.dart';
-import 'package:atbaqi_client/controllers/home_controller.dart';
-import 'package:atbaqi_client/models/all_familes_model.dart';
-import 'package:atbaqi_client/models/family_by_id_model.dart';
-import 'package:atbaqi_client/models/home_model.dart';
 import 'package:atbaqi_client/view/familymeals/screens/family_details_screen.dart';
 
 import '../../../controllers/favourite_controller.dart';
 import '../../../core/utils/app_imports.dart';
 import '../../../core/utils/helper.dart';
 import '../../../core/widgets/custom_app_bar.dart';
-import '../../../core/widgets/custom_image.dart';
 import '../widget/favourite_item.dart';
 
 class FavouriteScreen extends StatelessWidget {

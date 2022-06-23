@@ -25,7 +25,6 @@ class AuthApis {
   Dio dio;
 
   AuthController authController = myGet.Get.find();
-  // ProfileController profileController = myGet.Get.find();
 
   initDio() {
     if (dio == null) {
@@ -50,10 +49,8 @@ class AuthApis {
           options: Options(headers: {"Accept": "application/json"}));
       if (response.statusCode==200 && response.data['errNum']!='401') {
         await SPHelper.spHelper.setToken(response.data['user']['api_token']);
-
         ProgressDialogUtils.hide();
         ProfileApis.profileApis.getProfile();
-
         print(response.data['user']['api_token']);
         HomeApis.homeApis.getAllCategories();
         HomeApis.homeApis.getHome();

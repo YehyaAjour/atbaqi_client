@@ -26,6 +26,7 @@ class ProfileApis {
   }
 
   getProfile() async {
+
     try {
 
       initDio();
@@ -47,21 +48,14 @@ class ProfileApis {
     }
   }
 
-  updateProfile(
-    String phone,
-    String name,
-    //  File image
-  ) async {
+  updateProfile(String phone, String name,) async {
     try {
       initDio();
       String token = SPHelper.spHelper.getToken();
-
       ProgressDialogUtils.show();
-
       FormData data = FormData.fromMap({
         'phone': phone,
         'name': name,
-        // "image": await MultipartFile.fromFile(image.path, filename: image.path)
       });
       Response response = await dio.post(
         baseUrl + updateProfileUrl,

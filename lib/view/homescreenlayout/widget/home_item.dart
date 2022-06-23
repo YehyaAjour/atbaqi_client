@@ -26,7 +26,7 @@ class HomeItem extends StatelessWidget {
               ClipRRect(
                 borderRadius:
                     BorderRadius.horizontal(right: Radius.circular(12.r)),
-                child: CachedNetworkImageShare(model.image, Get.height, 100, 1),
+                child: CachedNetworkImageShare(baseImageUrl+model.image, Get.height, 100, 1),
               ),
               SizedBox(
                 width: 10.w,

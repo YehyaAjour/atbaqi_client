@@ -60,7 +60,7 @@ class AllMyOrderItem extends StatelessWidget {
                             : order_status == 'processing'
                             ? 'inproggress'
                             : order_status == 'delivery'
-                            ? 'delivery'
+                            ? 'received'
                             : order_status == 'rejected' ||
                                     order_status == 'cancelled'
                                 ? 'rejected'

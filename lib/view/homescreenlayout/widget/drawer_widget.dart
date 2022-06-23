@@ -10,7 +10,7 @@ import '../../../core/widgets/custom_image.dart';
 import '../../help and support/screens/help_and_support_screen.dart';
 import '../../help and support/screens/privacy_policy_screen.dart';
 import '../../main screen/Screens/main_screen.dart';
-import '../../user_profile/screens/user_profile_screen.dart';
+import '../../profile/screens/user_profile_screen.dart';
 import 'drawer_item.dart';
 
 class DrawerWidget extends StatelessWidget {

@@ -67,6 +67,8 @@ class OrderApis {
   }
 
   getAllOrderList() async {
+    orderController.getAllOrderListData.value =
+        AllOrderModel();
     try {
       initDio();
       String token = SPHelper.spHelper.getToken();

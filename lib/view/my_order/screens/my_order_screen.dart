@@ -27,53 +27,52 @@ class MyOrderScreen extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 59.h,
-          ),
-          Obx(() => orderController.getAllOrderListData.value.order == null
-              ? Helper.loading()
-              : orderController.getAllOrderListData.value.order.length == 0
-                  ? Center(
-                    child: CustomText(
-                        "لم تقم باضافة اي طلب",
-                        fontSize: 14.sp,
-                      ),
-                  )
-                  : Expanded(
-                      child: RefreshIndicator(
-                        onRefresh: () async{await  OrderApis.orderApis.getAllOrderList(); },
-                        color: AppColors.primaryColor,
+      body: RefreshIndicator(
+        color: AppColors.primaryColor,
+        onRefresh: () async{await  OrderApis.orderApis.getAllOrderList(); },
 
-                        child: ListView.builder(
-                          padding: EdgeInsets.zero,
-                          itemCount: orderController
-                              .getAllOrderListData.value.order.length,
-                          physics: BouncingScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            var value = orderController
-                                .getAllOrderListData.value.order[index];
-                            return AllMyOrderItem(
-                              order_status: value.status,
-                              price: value.total,
-                              orderNumber: value.id.toString(),
-                              familyName: value.family.name,
-                              onTap: () {
-                                OrderApis.orderApis.getOrderDetails(value.id);
-                                Get.to(OrderStatusScreen());
-                                // orderController.getOrderDetailsData.value =
-                                //     OrderDetailsModel.fromJson({});
-                                // OrderApis.orderApis.getOrderDetails(value.id.toString());
-
-                                // Get.to(OrderDetailsScreen());
-                              },
-                            );
-                          },
+        child: ListView(
+          children: [
+            SizedBox(
+              height: 59.h,
+            ),
+            Obx(() => orderController.getAllOrderListData.value.order == null
+                ? SizedBox()
+                : orderController.getAllOrderListData.value.order.length == 0
+                    ? Center(
+                      child: CustomText(
+                          "لم تقم باضافة اي طلب",
+                          fontSize: 14.sp,
                         ),
-                      ),
+                    )
+                    : ListView.builder(
+                      shrinkWrap: true,
+                      padding: EdgeInsets.zero,
+                      itemCount: orderController
+                          .getAllOrderListData.value.order.length,
+                      physics: BouncingScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        var value = orderController
+                            .getAllOrderListData.value.order[index];
+                        return AllMyOrderItem(
+                          order_status: value.status,
+                          price: value.total,
+                          orderNumber: value.id.toString(),
+                          familyName: value.family.name,
+                          onTap: () {
+                            OrderApis.orderApis.getOrderDetails(value.id);
+                            Get.to(OrderStatusScreen(id: value.id,));
+                            // orderController.getOrderDetailsData.value =
+                            //     OrderDetailsModel.fromJson({});
+                            // OrderApis.orderApis.getOrderDetails(value.id.toString());
+
+                            // Get.to(OrderDetailsScreen());
+                          },
+                        );
+                      },
                     )),
-        ],
+          ],
+        ),
       ),
     );
   }
